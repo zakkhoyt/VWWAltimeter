@@ -21,7 +21,7 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
 @property (weak, nonatomic) IBOutlet UILabel *pressureLabel;
 @property (nonatomic, strong) CMAltimeter *altimeterManager;
 @property (nonatomic, strong) NSMutableArray *session;
-
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 
 @end
 
@@ -37,12 +37,19 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
     
     [self start];
     UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(doubleTapHandler:)];
+    doubleTapGesture.numberOfTapsRequired = 2;
     [self.view addGestureRecognizer:doubleTapGesture];
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    
+    
+    self.infoLabel.alpha = 1.0;
+    [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(timerAction:) userInfo:nil repeats:NO];
 }
 
 -(void)doubleTapHandler:(UITapGestureRecognizer*)sender{
@@ -61,6 +68,12 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
     }
 }
 
+
+-(void)timerAction:(id)sender{
+    [UIView animateWithDuration:1.0 animations:^{
+        self.infoLabel.alpha = 0.0;
+    }];
+}
 -(void)start{
 //    @"△";
 //    @"⬆︎";

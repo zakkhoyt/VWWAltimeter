@@ -29,6 +29,16 @@
     self.plotView.delegate = self;
     self.plotView.session = self.session;
     self.title = @"Summary";
+    
+    self.maxAltitudeLabel.layer.masksToBounds = YES;
+    self.maxAltitudeLabel.layer.cornerRadius = 8;
+    self.minAltitudeLabel.layer.masksToBounds = YES;
+    self.minAltitudeLabel.layer.cornerRadius = 8;
+    self.maxPressureLabel.layer.masksToBounds = YES;
+    self.maxPressureLabel.layer.cornerRadius = 8;
+    self.minPressureLabel.layer.masksToBounds = YES;
+    self.minPressureLabel.layer.cornerRadius = 8;
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

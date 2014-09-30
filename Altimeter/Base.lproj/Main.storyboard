@@ -20,7 +20,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pressure" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VR4-3V-X5G">
                                 <rect key="frame" x="0.0" y="300" width="600" height="300"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="88"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="80"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=compact">
@@ -30,12 +30,21 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Altitude" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZA-d7-hog">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="88"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="80"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=compact">
                                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="76"/>
                                 </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double tap to reset the altimeter or view settings and session." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LxD-xz-AFM">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="tWW-EK-Bhg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -43,6 +52,7 @@
                             <constraint firstItem="VR4-3V-X5G" firstAttribute="leading" secondItem="aZA-d7-hog" secondAttribute="trailing" id="0gh-hz-bgZ"/>
                             <constraint firstAttribute="trailing" secondItem="VR4-3V-X5G" secondAttribute="trailing" id="95D-8X-oha"/>
                             <constraint firstItem="aZA-d7-hog" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="99V-Ly-NV8"/>
+                            <constraint firstAttribute="trailing" secondItem="LxD-xz-AFM" secondAttribute="trailing" id="Ar6-hy-pKQ"/>
                             <constraint firstAttribute="trailing" secondItem="aZA-d7-hog" secondAttribute="trailing" id="FB1-nA-o4v"/>
                             <constraint firstItem="VR4-3V-X5G" firstAttribute="top" secondItem="aZA-d7-hog" secondAttribute="bottom" id="GUL-ZQ-fzP"/>
                             <constraint firstAttribute="trailing" secondItem="aZA-d7-hog" secondAttribute="trailing" id="GtO-Ks-khF"/>
@@ -52,6 +62,8 @@
                             <constraint firstItem="VR4-3V-X5G" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="ben-O2-ejO"/>
                             <constraint firstItem="aZA-d7-hog" firstAttribute="leading" secondItem="VR4-3V-X5G" secondAttribute="trailing" id="gaj-RK-RIC"/>
                             <constraint firstItem="VR4-3V-X5G" firstAttribute="width" secondItem="aZA-d7-hog" secondAttribute="width" id="iC1-WL-Asz"/>
+                            <constraint firstItem="LxD-xz-AFM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="kNn-Jj-f25"/>
+                            <constraint firstItem="LxD-xz-AFM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kT1-Kd-4ez"/>
                             <constraint firstItem="aZA-d7-hog" firstAttribute="height" secondItem="VR4-3V-X5G" secondAttribute="height" id="lHQ-S4-19k"/>
                             <constraint firstItem="VR4-3V-X5G" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mDy-zg-Sv0"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VR4-3V-X5G" secondAttribute="bottom" id="yDU-Tf-0Vc"/>
@@ -88,6 +100,7 @@
                     <navigationItem key="navigationItem" id="D4I-6X-Vds"/>
                     <connections>
                         <outlet property="altitudeLabel" destination="aZA-d7-hog" id="gWL-gh-9ng"/>
+                        <outlet property="infoLabel" destination="LxD-xz-AFM" id="xBV-DC-1gD"/>
                         <outlet property="pressureLabel" destination="VR4-3V-X5G" id="t2o-vf-Z8g"/>
                         <segue destination="58e-bJ-hro" kind="show" identifier="VWWSegueMainToSettings" id="HON-xK-hlG"/>
                         <segue destination="3bb-CL-cEl" kind="show" identifier="VWWSegueMainToSummary" id="s5b-h4-QqV"/>
@@ -223,6 +236,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="maxAltitude" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyd-1B-Vzn">
                                         <rect key="frame" x="489" y="8" width="103" height="21"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="103" id="3wi-gb-5c0"/>
                                             <constraint firstAttribute="height" constant="21" id="iNe-9g-yp7"/>
@@ -233,6 +247,7 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="minAltitude" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4C-kJ-bpN">
                                         <rect key="frame" x="489" y="571" width="103" height="21"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="BIn-H2-r8m"/>
                                             <constraint firstAttribute="width" constant="103" id="wyq-2W-Zfy"/>
@@ -243,6 +258,7 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="minPressure" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIw-bJ-CwZ">
                                         <rect key="frame" x="8" y="571" width="103" height="21"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="103" id="Ake-D0-pfC"/>
                                             <constraint firstAttribute="height" constant="21" id="LGD-e3-i9k"/>
@@ -253,6 +269,7 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="maxPressure" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axG-7F-0FR">
                                         <rect key="frame" x="8" y="8" width="103" height="21"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="103" id="3Ud-fg-8Lv"/>
                                             <constraint firstAttribute="height" constant="21" id="yfp-Do-c9F"/>

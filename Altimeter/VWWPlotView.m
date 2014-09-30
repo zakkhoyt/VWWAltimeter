@@ -23,6 +23,10 @@
 #pragma mark Public
 -(void)setSession:(NSArray*)session{
     _session = session;
+    self.minAltitude =  100000;
+    self.maxAltitude = -100000;
+    self.minPressure =  100000;
+    self.maxPressure = -100000;
     for(CMAltitudeData *data in _session){
         self.minAltitude = MIN(self.minAltitude, data.relativeAltitude.floatValue);
         self.maxAltitude = MAX(self.maxAltitude, data.relativeAltitude.floatValue);
@@ -79,19 +83,17 @@
         NSLog(@"");
     }
     
-    const CGFloat yAltitudeFactor = self.bounds.size.height / self.maxAltitude;
+    CGFloat maxY = self.bounds.size.height;
+    CGFloat minY = 0;
+    CGFloat swingY = self.maxAltitude - self.minAltitude;
+    CGFloat yAltitudeFactor = (maxY - minY) / swingY;
+    
     
     for(NSInteger index = 0; index < numSteps; index++){
         CMAltitudeData *data = self.session[index];
         CGFloat x = index * stepWidth;
-        CGFloat y = data.relativeAltitude.floatValue * yAltitudeFactor;
+        CGFloat y = self.bounds.size.height - ((data.relativeAltitude.floatValue * yAltitudeFactor) - (self.minAltitude * yAltitudeFactor));
 
-//        if(x > self.bounds.size.height){
-//            NSAssert(NO, @"Bad x");
-//        }
-//        if(y > self.bounds.size.width){
-//            NSAssert(NO, @"Bad y");
-//        }
         if(index == 0){
             CGContextMoveToPoint(cgContext, x, y);
         } else {
@@ -101,106 +103,7 @@
     }
     CGContextStrokePath(cgContext);
     
-    
-//    
-//    [self drawSolidLineUsingContext:cgContext fromPoint:CGPointMake(0, xBaseline) toPoint:CGPointMake(self.bounds.size.width, xBaseline) color:xColor];
-//    
-//    CGFloat yMax = xBaseline - _limits.x.max * yFactor;
-//    [self drawDashedLineUsingContext:cgContext fromPoint:CGPointMake(0, yMax) toPoint:CGPointMake(self.bounds.size.width, yMax) color:xColor];
-//
-//    CGFloat yMin = xBaseline - _limits.x.min * yFactor;
-//    [self drawDashedLineUsingContext:cgContext fromPoint:CGPointMake(0, yMin) toPoint:CGPointMake(self.bounds.size.width, yMin) color:xColor];
-//    
-//    CGContextSetLineWidth(cgContext, 2.0f);
-//    for(NSInteger index = 0; index < kSamples; index++){
-//        NSDictionary *d = self.session.data[startIndex + index];
-//        NSNumber *yNumber = d[@"x"];
-//        CGFloat y = -yNumber.floatValue * yFactor + xBaseline;
-//        if(index == 0){
-//            CGContextMoveToPoint(cgContext, 0, y);
-//        } else {
-//            CGFloat x = index * xFactor;
-//            CGContextAddLineToPoint(cgContext, x, y);
-//        }
-//    }
-//    CGContextStrokePath(cgContext);
-//
-//    
-//    {
-//        UIColor *color = [UIColor greenColor];
-//        CGContextSetStrokeColorWithColor(cgContext , color.CGColor);
-//        [self drawSolidLineUsingContext:cgContext fromPoint:CGPointMake(0, yBaseline) toPoint:CGPointMake(self.bounds.size.width, yBaseline) color:color];
-//        
-//        CGFloat yMax = yBaseline - _limits.y.max * yFactor;
-//        [self drawDashedLineUsingContext:cgContext fromPoint:CGPointMake(0, yMax) toPoint:CGPointMake(self.bounds.size.width, yMax) color:xColor];
-//        
-//        CGFloat yMin = yBaseline - _limits.y.min * yFactor;
-//        [self drawDashedLineUsingContext:cgContext fromPoint:CGPointMake(0, yMin) toPoint:CGPointMake(self.bounds.size.width, yMin) color:xColor];
-//
-//        CGContextSetLineWidth(cgContext, 2.0f);
-//        for(NSInteger index = 0; index < kSamples; index++){
-//            NSDictionary *d = self.session.data[startIndex + index];
-//            NSNumber *yNumber = d[@"y"];
-//            CGFloat y = -yNumber.floatValue * yFactor + yBaseline;
-//            if(index == 0){
-//                CGContextMoveToPoint(cgContext, 0, y);
-//            } else {
-//                CGFloat x = index * xFactor;
-//                CGContextAddLineToPoint(cgContext, x, y);
-//            }
-//        }
-//        CGContextStrokePath(cgContext);
-//    }
-//    
-//    {
-//        UIColor *color = [UIColor cyanColor];
-//        CGContextSetStrokeColorWithColor(cgContext , color.CGColor);
-//        [self drawSolidLineUsingContext:cgContext fromPoint:CGPointMake(0, zBaseline) toPoint:CGPointMake(self.bounds.size.width, zBaseline) color:color];
-//        
-//        CGFloat yMax = zBaseline - _limits.z.max * yFactor;
-//        [self drawDashedLineUsingContext:cgContext fromPoint:CGPointMake(0, yMax) toPoint:CGPointMake(self.bounds.size.width, yMax) color:xColor];
-//        
-//        CGFloat yMin = zBaseline - _limits.z.min * yFactor;
-//        [self drawDashedLineUsingContext:cgContext fromPoint:CGPointMake(0, yMin) toPoint:CGPointMake(self.bounds.size.width, yMin) color:xColor];
-//
-//        CGContextSetLineWidth(cgContext, 2.0f);
-//        for(NSInteger index = 0; index < kSamples; index++){
-//            NSDictionary *d = self.session.data[startIndex + index];
-//            NSNumber *yNumber = d[@"z"];
-//            CGFloat y = -yNumber.floatValue * yFactor + zBaseline;
-//            if(index == 0){
-//                CGContextMoveToPoint(cgContext, 0, y);
-//            } else {
-//                CGFloat x = index * xFactor;
-//                CGContextAddLineToPoint(cgContext, x, y);
-//            }
-//        }
-//        CGContextStrokePath(cgContext);
-//    }
-    //    // Text
-    //    CGMutablePathRef path = CGPathCreateMutable(); //1
-    //    //    CGPathAddRect(path, NULL, self.bounds);
-    //
-    //    CGFloat y = self.bounds.size.height - (self.session.limits.x.max * yFactor + xBaseline);
-    //    CGPathAddRect(path, NULL, CGRectMake(10, -y, 300, 10));
-    //    NSString *s = [NSString stringWithFormat:@"%.4f", self.session.limits.x.max];
-    //    NSAttributedString* attString = [[NSAttributedString alloc] initWithString:s attributes:@{NSForegroundColorAttributeName : [UIColor redColor]}];
-    //    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef) attString);
-    //    CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, [attString length]), path, NULL);
-    //
-    //
-    //
-    //    // Flip the coordinate system
-    //    CGContextSetTextMatrix(cgContext, CGAffineTransformIdentity);
-    //    CGContextTranslateCTM(cgContext, 0, self.bounds.size.height);
-    //    CGContextScaleCTM(cgContext, 1.0, -1.0);
-    //
-    //
-    //    CTFrameDraw(frame, cgContext); //4
-    //    
-    //    CFRelease(frame); //5
-    //    CFRelease(path);
-    //    CFRelease(framesetter);
+
     
 }
 
