@@ -373,9 +373,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				INFOPLIST_FILE = Altimeter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a44d91b6-fcac-42b3-a018-25b63725c2db";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -384,9 +386,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				INFOPLIST_FILE = Altimeter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a44d91b6-fcac-42b3-a018-25b63725c2db";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -444,6 +448,7 @@
 				C6CEB78819DB14FE00B9FE20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C6CEB78919DB14FE00B9FE20 /* Build configuration list for PBXNativeTarget "AltimeterTests" */ = {
 			isa = XCConfigurationList;
@@ -452,6 +457,7 @@
 				C6CEB78B19DB14FE00B9FE20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,6 +9,7 @@
 #import "VWWViewController.h"
 #import "VWWUserDefaults.h"
 #import "VWWSummaryViewController.h"
+#define VWW_FAKE_IT 1;
 
 @import CoreMotion;
 
@@ -40,7 +41,7 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
     doubleTapGesture.numberOfTapsRequired = 2;
     [self.view addGestureRecognizer:doubleTapGesture];
     
-    
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -52,6 +53,29 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
     [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(timerAction:) userInfo:nil repeats:NO];
 }
 
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    // 4s 48    
+    // 5  58
+    // 6  68
+    // 6+
+    UIFont *font = nil;
+    CGFloat portraitHeight = MAX(self.view.bounds.size.width, self.view.bounds.size.height);
+    if(portraitHeight <= 480){
+        
+        font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:48];
+    } else if(portraitHeight <= 568){
+        font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:58];
+    } else if(portraitHeight <= 667){
+        font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:68];
+    } else {
+        font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:78];
+    }
+    self.altitudeLabel.font = font;
+    self.pressureLabel.font = font;
+    
+    NSLog(@"");
+}
 -(void)doubleTapHandler:(UITapGestureRecognizer*)sender{
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil
                                                             delegate:self
@@ -78,6 +102,12 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
 //    @"△";
 //    @"⬆︎";
 //    @"⬇︎";
+    
+#if defined(VWW_FAKE_IT)
+    self.altitudeLabel.text = @"△ Altitude\n18.73m";
+    self.pressureLabel.text = @"Pressure\n101.12kPa";
+    return;
+#endif
     self.altitudeLabel.text = @"△ Altitude\n...";
     self.pressureLabel.text = @"Pressure\n...";
 
