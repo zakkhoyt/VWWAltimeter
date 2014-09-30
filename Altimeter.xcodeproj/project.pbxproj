@@ -1,0 +1,457 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C6CEB76919DB14FE00B9FE20 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB76819DB14FE00B9FE20 /* main.m */; };
+		C6CEB76C19DB14FE00B9FE20 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB76B19DB14FE00B9FE20 /* AppDelegate.m */; };
+		C6CEB76F19DB14FE00B9FE20 /* VWWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB76E19DB14FE00B9FE20 /* VWWViewController.m */; };
+		C6CEB77219DB14FE00B9FE20 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6CEB77019DB14FE00B9FE20 /* Main.storyboard */; };
+		C6CEB77419DB14FE00B9FE20 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6CEB77319DB14FE00B9FE20 /* Images.xcassets */; };
+		C6CEB78319DB14FE00B9FE20 /* AltimeterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB78219DB14FE00B9FE20 /* AltimeterTests.m */; };
+		C6CEB78E19DB23A400B9FE20 /* VWWSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB78D19DB23A400B9FE20 /* VWWSettingsViewController.m */; };
+		C6CEB79219DB26CA00B9FE20 /* VWWUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB79119DB26CA00B9FE20 /* VWWUserDefaults.m */; };
+		C6CEB79519DB332200B9FE20 /* VWWSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB79419DB332200B9FE20 /* VWWSummaryViewController.m */; };
+		C6CEB79819DB33D900B9FE20 /* VWWPlotView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB79719DB33D900B9FE20 /* VWWPlotView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C6CEB77D19DB14FE00B9FE20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6CEB75B19DB14FE00B9FE20 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C6CEB76219DB14FE00B9FE20;
+			remoteInfo = Altimeter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C6CEB76319DB14FE00B9FE20 /* Altimeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Altimeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6CEB76719DB14FE00B9FE20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6CEB76819DB14FE00B9FE20 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C6CEB76A19DB14FE00B9FE20 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C6CEB76B19DB14FE00B9FE20 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C6CEB76D19DB14FE00B9FE20 /* VWWViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VWWViewController.h; sourceTree = "<group>"; };
+		C6CEB76E19DB14FE00B9FE20 /* VWWViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VWWViewController.m; sourceTree = "<group>"; };
+		C6CEB77119DB14FE00B9FE20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C6CEB77319DB14FE00B9FE20 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C6CEB77C19DB14FE00B9FE20 /* AltimeterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AltimeterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6CEB78119DB14FE00B9FE20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6CEB78219DB14FE00B9FE20 /* AltimeterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AltimeterTests.m; sourceTree = "<group>"; };
+		C6CEB78C19DB23A400B9FE20 /* VWWSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWSettingsViewController.h; sourceTree = "<group>"; };
+		C6CEB78D19DB23A400B9FE20 /* VWWSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWSettingsViewController.m; sourceTree = "<group>"; };
+		C6CEB79019DB26CA00B9FE20 /* VWWUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWUserDefaults.h; sourceTree = "<group>"; };
+		C6CEB79119DB26CA00B9FE20 /* VWWUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWUserDefaults.m; sourceTree = "<group>"; };
+		C6CEB79319DB332200B9FE20 /* VWWSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWSummaryViewController.h; sourceTree = "<group>"; };
+		C6CEB79419DB332200B9FE20 /* VWWSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWSummaryViewController.m; sourceTree = "<group>"; };
+		C6CEB79619DB33D300B9FE20 /* VWWPlotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWPlotView.h; sourceTree = "<group>"; };
+		C6CEB79719DB33D900B9FE20 /* VWWPlotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWPlotView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C6CEB76019DB14FE00B9FE20 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6CEB77919DB14FE00B9FE20 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C6CEB75A19DB14FE00B9FE20 = {
+			isa = PBXGroup;
+			children = (
+				C6CEB76519DB14FE00B9FE20 /* Altimeter */,
+				C6CEB77F19DB14FE00B9FE20 /* AltimeterTests */,
+				C6CEB76419DB14FE00B9FE20 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C6CEB76419DB14FE00B9FE20 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C6CEB76319DB14FE00B9FE20 /* Altimeter.app */,
+				C6CEB77C19DB14FE00B9FE20 /* AltimeterTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6CEB76519DB14FE00B9FE20 /* Altimeter */ = {
+			isa = PBXGroup;
+			children = (
+				C6CEB79919DB33DC00B9FE20 /* View */,
+				C6CEB78F19DB23B800B9FE20 /* ViewControllers */,
+				C6CEB77019DB14FE00B9FE20 /* Main.storyboard */,
+				C6CEB77319DB14FE00B9FE20 /* Images.xcassets */,
+				C6CEB76619DB14FE00B9FE20 /* Supporting Files */,
+				C6CEB79019DB26CA00B9FE20 /* VWWUserDefaults.h */,
+				C6CEB79119DB26CA00B9FE20 /* VWWUserDefaults.m */,
+			);
+			path = Altimeter;
+			sourceTree = "<group>";
+		};
+		C6CEB76619DB14FE00B9FE20 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C6CEB76A19DB14FE00B9FE20 /* AppDelegate.h */,
+				C6CEB76B19DB14FE00B9FE20 /* AppDelegate.m */,
+				C6CEB76719DB14FE00B9FE20 /* Info.plist */,
+				C6CEB76819DB14FE00B9FE20 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C6CEB77F19DB14FE00B9FE20 /* AltimeterTests */ = {
+			isa = PBXGroup;
+			children = (
+				C6CEB78219DB14FE00B9FE20 /* AltimeterTests.m */,
+				C6CEB78019DB14FE00B9FE20 /* Supporting Files */,
+			);
+			path = AltimeterTests;
+			sourceTree = "<group>";
+		};
+		C6CEB78019DB14FE00B9FE20 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C6CEB78119DB14FE00B9FE20 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C6CEB78F19DB23B800B9FE20 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C6CEB76D19DB14FE00B9FE20 /* VWWViewController.h */,
+				C6CEB76E19DB14FE00B9FE20 /* VWWViewController.m */,
+				C6CEB78C19DB23A400B9FE20 /* VWWSettingsViewController.h */,
+				C6CEB78D19DB23A400B9FE20 /* VWWSettingsViewController.m */,
+				C6CEB79319DB332200B9FE20 /* VWWSummaryViewController.h */,
+				C6CEB79419DB332200B9FE20 /* VWWSummaryViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C6CEB79919DB33DC00B9FE20 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C6CEB79619DB33D300B9FE20 /* VWWPlotView.h */,
+				C6CEB79719DB33D900B9FE20 /* VWWPlotView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C6CEB76219DB14FE00B9FE20 /* Altimeter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6CEB78619DB14FE00B9FE20 /* Build configuration list for PBXNativeTarget "Altimeter" */;
+			buildPhases = (
+				C6CEB75F19DB14FE00B9FE20 /* Sources */,
+				C6CEB76019DB14FE00B9FE20 /* Frameworks */,
+				C6CEB76119DB14FE00B9FE20 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Altimeter;
+			productName = Altimeter;
+			productReference = C6CEB76319DB14FE00B9FE20 /* Altimeter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C6CEB77B19DB14FE00B9FE20 /* AltimeterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6CEB78919DB14FE00B9FE20 /* Build configuration list for PBXNativeTarget "AltimeterTests" */;
+			buildPhases = (
+				C6CEB77819DB14FE00B9FE20 /* Sources */,
+				C6CEB77919DB14FE00B9FE20 /* Frameworks */,
+				C6CEB77A19DB14FE00B9FE20 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C6CEB77E19DB14FE00B9FE20 /* PBXTargetDependency */,
+			);
+			name = AltimeterTests;
+			productName = AltimeterTests;
+			productReference = C6CEB77C19DB14FE00B9FE20 /* AltimeterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C6CEB75B19DB14FE00B9FE20 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Zakk Hoyt";
+				TargetAttributes = {
+					C6CEB76219DB14FE00B9FE20 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					C6CEB77B19DB14FE00B9FE20 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = C6CEB76219DB14FE00B9FE20;
+					};
+				};
+			};
+			buildConfigurationList = C6CEB75E19DB14FE00B9FE20 /* Build configuration list for PBXProject "Altimeter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C6CEB75A19DB14FE00B9FE20;
+			productRefGroup = C6CEB76419DB14FE00B9FE20 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C6CEB76219DB14FE00B9FE20 /* Altimeter */,
+				C6CEB77B19DB14FE00B9FE20 /* AltimeterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C6CEB76119DB14FE00B9FE20 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6CEB77219DB14FE00B9FE20 /* Main.storyboard in Resources */,
+				C6CEB77419DB14FE00B9FE20 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6CEB77A19DB14FE00B9FE20 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C6CEB75F19DB14FE00B9FE20 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6CEB76F19DB14FE00B9FE20 /* VWWViewController.m in Sources */,
+				C6CEB79819DB33D900B9FE20 /* VWWPlotView.m in Sources */,
+				C6CEB79219DB26CA00B9FE20 /* VWWUserDefaults.m in Sources */,
+				C6CEB79519DB332200B9FE20 /* VWWSummaryViewController.m in Sources */,
+				C6CEB76C19DB14FE00B9FE20 /* AppDelegate.m in Sources */,
+				C6CEB78E19DB23A400B9FE20 /* VWWSettingsViewController.m in Sources */,
+				C6CEB76919DB14FE00B9FE20 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6CEB77819DB14FE00B9FE20 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6CEB78319DB14FE00B9FE20 /* AltimeterTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C6CEB77E19DB14FE00B9FE20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C6CEB76219DB14FE00B9FE20 /* Altimeter */;
+			targetProxy = C6CEB77D19DB14FE00B9FE20 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C6CEB77019DB14FE00B9FE20 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C6CEB77119DB14FE00B9FE20 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C6CEB78419DB14FE00B9FE20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C6CEB78519DB14FE00B9FE20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C6CEB78719DB14FE00B9FE20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Altimeter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C6CEB78819DB14FE00B9FE20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Altimeter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C6CEB78A19DB14FE00B9FE20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = AltimeterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Altimeter.app/Altimeter";
+			};
+			name = Debug;
+		};
+		C6CEB78B19DB14FE00B9FE20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = AltimeterTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Altimeter.app/Altimeter";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C6CEB75E19DB14FE00B9FE20 /* Build configuration list for PBXProject "Altimeter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6CEB78419DB14FE00B9FE20 /* Debug */,
+				C6CEB78519DB14FE00B9FE20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6CEB78619DB14FE00B9FE20 /* Build configuration list for PBXNativeTarget "Altimeter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6CEB78719DB14FE00B9FE20 /* Debug */,
+				C6CEB78819DB14FE00B9FE20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C6CEB78919DB14FE00B9FE20 /* Build configuration list for PBXNativeTarget "AltimeterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6CEB78A19DB14FE00B9FE20 /* Debug */,
+				C6CEB78B19DB14FE00B9FE20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C6CEB75B19DB14FE00B9FE20 /* Project object */;
+}
