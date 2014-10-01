@@ -135,8 +135,6 @@
 }
 
 -(NSString*)jsonRepresentation{
-    
-
     NSMutableArray *array = [[NSMutableArray alloc]initWithCapacity:self.session.count];
     for(CMAltitudeData *data in self.session){
         NSDictionary *dictionary = @{@"relativeAltitude" : @(data.relativeAltitude.floatValue),

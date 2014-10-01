@@ -16,6 +16,7 @@
 @end
 
 @interface VWWPlotView : UIView
-@property (nonatomic, strong) NSArray *session;
+@property (nonatomic, strong) NSArray *motionSession;
+@property (nonatomic, strong) NSArray *locationSession;
 @property (nonatomic, weak) id <VWWPlotViewDelegate> delegate;
 @end

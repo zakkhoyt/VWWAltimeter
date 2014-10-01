@@ -14,11 +14,18 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic, strong) NSNumber *baseAltitude;
-@property (nonatomic, strong, readwrite) NSString *altitudeString;
-@property (nonatomic, strong, readwrite) NSString *minAltitudeString;
-@property (nonatomic, strong, readwrite) NSString *maxAltitudeString;
-@property (nonatomic, readwrite) float minAltitude;
-@property (nonatomic, readwrite) float maxAltitude;
+@property (nonatomic, strong, readwrite) NSString *absoluteAltitudeString;
+@property (nonatomic, strong, readwrite) NSString *minAbsoluteAltitudeString;
+@property (nonatomic, strong, readwrite) NSString *maxAbsoluteAltitudeString;
+@property (nonatomic, readwrite) float minAbsoluteAltitude;
+@property (nonatomic, readwrite) float maxAbsoluteAltitude;
+
+@property (nonatomic, strong, readwrite) NSString *relativeAltitudeString;
+@property (nonatomic, strong, readwrite) NSString *minRelativeAltitudeString;
+@property (nonatomic, strong, readwrite) NSString *maxRelativeAltitudeString;
+@property (nonatomic, readwrite) float minRelativeAltitude;
+@property (nonatomic, readwrite) float maxRelativeAltitude;
+
 
 @property (nonatomic, strong, readwrite) NSString *speedString;
 @property (nonatomic, strong, readwrite) NSString *minSpeedString;
@@ -42,6 +49,7 @@
 -(instancetype)init{
     self = [super init];
     if(self){
+        _session = [@[]mutableCopy];
         _locationManager = [[CLLocationManager alloc]init];
         _locationManager.delegate = self;
         
@@ -67,6 +75,35 @@
     self.baseAltitude = nil;
 }
 
+-(NSString*)jsonRepresentation{
+    NSMutableArray *array = [[NSMutableArray alloc]initWithCapacity:self.session.count];
+    for(VWWLocation *data in self.session){
+        NSDictionary *dictionary = @{@"relativeAltitude" : @(data.relativeAltitude),
+                                     @"absoluteAltitude" : @(data.absoluteAltitude),
+                                     @"speed" : @(data.speed)};
+        [array addObject:dictionary];
+    }
+    
+    NSString *json = [self jsonRepresentationOfArray:array prettyPrint:YES];
+    return json;
+}
+
+-(NSString*)jsonRepresentationOfArray:(NSArray*)array prettyPrint:(BOOL)prettyPrint{
+    if([NSJSONSerialization isValidJSONObject:array] == NO){
+        NSLog(@"Cannot convert object to json");
+        return nil;
+    }
+    
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:&error];
+    if (! jsonData) {
+        NSLog(@"%@", error.localizedDescription);
+        return @"{}";
+    } else {
+        return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+}
+
 
 
 #pragma mark CLLocationManagerDelegate
@@ -87,31 +124,55 @@
     CLLocation *location = locations[0];
     self.location = location;
     
+//    [self.session addObject:location];
+    
 //    NSLog(@"location.verticalAccuracy: %.2f", location.verticalAccuracy);
     
+
+    // ****************************** ABSOLUTE ALTITUDE
+    self.minAbsoluteAltitude = MIN(self.minAbsoluteAltitude, location.altitude);
+    self.maxAbsoluteAltitude = MAX(self.maxAbsoluteAltitude, location.altitude);
+
+    const float kAltitudeFactor = 3.28084;
+    float absoluteAltitude = [VWWUserDefaults altitudeUnits] == 0 ? location.altitude : location.altitude * kAltitudeFactor;
+    NSString *altitudeUnitsString = [VWWUserDefaults altitudeUnits] == 0 ? @"m" : @"f";
+
+    
+    self.absoluteAltitudeString = [NSString stringWithFormat:@"△ Altitude\n%@%.2f%@",
+                           absoluteAltitude > 0 ? @"⬆︎" : @"⬇︎",
+                           fabs(absoluteAltitude),
+                           altitudeUnitsString];
+    self.minAbsoluteAltitudeString = [NSString stringWithFormat:@"%.2f%@", self.minAbsoluteAltitude, altitudeUnitsString];
+    self.maxAbsoluteAltitudeString = [NSString stringWithFormat:@"%.2f%@", self.maxAbsoluteAltitude, altitudeUnitsString];
+
+    
+
+    // ****************************** RELATIVE ALTITUDE
     if(self.baseAltitude == nil){
         self.baseAltitude = @(location.altitude);
     }
     
-    float relativeAltitude = location.altitude - self.baseAltitude.floatValue;
+    float adjustedAltitude = location.altitude - self.baseAltitude.floatValue;
+    self.minRelativeAltitude = MIN(self.minRelativeAltitude, adjustedAltitude);
+    self.maxRelativeAltitude = MAX(self.maxRelativeAltitude, adjustedAltitude);
     
-    self.minAltitude = MIN(self.minAltitude, relativeAltitude);
-    self.maxAltitude = MAX(self.maxAltitude, relativeAltitude);
-
-    const float kAltitudeFactor = 3.28084;
-    float altitude = [VWWUserDefaults altitudeUnits] == 0 ? relativeAltitude : relativeAltitude * kAltitudeFactor;
-    NSString *altitudeUnitsString = [VWWUserDefaults altitudeUnits] == 0 ? @"m" : @"f";
-
-    
-    self.altitudeString = [NSString stringWithFormat:@"△ Altitude\n%@%.2f%@",
-                           altitude > 0 ? @"⬆︎" : @"⬇︎",
-                           fabs(altitude),
-                           altitudeUnitsString];
-    self.minAltitudeString = [NSString stringWithFormat:@"%.2f%@", self.minAltitude, altitudeUnitsString];
-    self.maxAltitudeString = [NSString stringWithFormat:@"%.2f%@", self.maxAltitude, altitudeUnitsString];
-
+    const float kRelativeAltitudeFactor = 3.28084;
+    float relativeAltitude = [VWWUserDefaults altitudeUnits] == 0 ? adjustedAltitude : adjustedAltitude * kRelativeAltitudeFactor;
+    NSString *relativeAltitudeUnitsString = [VWWUserDefaults altitudeUnits] == 0 ? @"m" : @"f";
     
     
+    self.relativeAltitudeString = [NSString stringWithFormat:@"△ Altitude\n%@%.2f%@",
+                                   relativeAltitude > 0 ? @"⬆︎" : @"⬇︎",
+                                   fabs(relativeAltitude),
+                                   relativeAltitudeUnitsString];
+    self.minRelativeAltitudeString = [NSString stringWithFormat:@"%.2f%@", self.minRelativeAltitude, relativeAltitudeUnitsString];
+    self.maxRelativeAltitudeString = [NSString stringWithFormat:@"%.2f%@", self.maxRelativeAltitude, relativeAltitudeUnitsString];
+    
+    
+    
+    
+    
+    // ****************************** SPEED
     self.minSpeed = MIN(self.minSpeed, location.speed);
     self.maxSpeed = MAX(self.maxSpeed, location.speed);
     
@@ -151,6 +212,31 @@
 
     
     
+    // ****************************** Min/Max
+    self.minAbsoluteAltitude = MIN(self.minAbsoluteAltitude, location.altitude);
+    self.maxAbsoluteAltitude = MAX(self.maxAbsoluteAltitude, location.altitude);
+    self.minRelativeAltitude = MIN(self.minRelativeAltitude, relativeAltitude);
+    self.maxRelativeAltitude = MAX(self.maxRelativeAltitude, relativeAltitude);
+    self.minSpeed = MIN(self.minSpeed, location.speed);
+    self.maxSpeed = MAX(self.maxSpeed, location.speed);
+
+    NSLog(@"minAbsoluteAltitude: %.2f", self.minAbsoluteAltitude);
+    NSLog(@"maxAbsoluteAltitude: %.2f", self.maxAbsoluteAltitude);
+    NSLog(@"minRelativeAltitude: %.2f", self.minRelativeAltitude);
+    NSLog(@"maxRelativeAltitude: %.2f", self.maxRelativeAltitude);
+    NSLog(@"minSpeed: %.2f", self.minSpeed);
+    NSLog(@"maxSpeed: %.2f", self.maxSpeed);
+
+    
+    
+    
+    
+    // ****************************** Store for plotting
+    VWWLocation *data = [[VWWLocation alloc]init];
+    data.relativeAltitude = adjustedAltitude;
+    data.absoluteAltitude = location.altitude;
+    data.speed = speed;
+    [self.session addObject:data];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:VWWLocationMonitorUpdated object:nil];
 }

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface VWWSummaryViewController : UIViewController
-@property (nonatomic, strong) NSArray *session;
+@property (nonatomic, strong) NSArray *motionSession;
+@property (nonatomic, strong) NSArray *locationSession;
 @end

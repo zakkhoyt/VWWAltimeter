@@ -13,10 +13,14 @@
 
 @interface VWWSummaryViewController () <VWWPlotViewDelegate>
 @property (weak, nonatomic) IBOutlet VWWPlotView *plotView;
-@property (weak, nonatomic) IBOutlet UILabel *maxAltitudeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *minAltitudeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *maxRelativeAltitudeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *minRelativeAltitudeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *maxPressureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *minPressureLabel;
+@property (weak, nonatomic) IBOutlet UILabel *maxSpeedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *minSpeedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *maxAbsoluteAltitudeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *minAbsoluteAltitudeLabel;
 
 @end
 
@@ -29,26 +33,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.plotView.delegate = self;
-    self.plotView.session = self.session;
+    self.plotView.motionSession = self.motionSession;
+    self.plotView.locationSession = self.locationSession;
     self.title = @"Summary";
     
-    self.maxAltitudeLabel.layer.masksToBounds = YES;
-    self.maxAltitudeLabel.layer.cornerRadius = 8;
-    self.minAltitudeLabel.layer.masksToBounds = YES;
-    self.minAltitudeLabel.layer.cornerRadius = 8;
+    self.maxRelativeAltitudeLabel.layer.masksToBounds = YES;
+    self.maxRelativeAltitudeLabel.layer.cornerRadius = 8;
+    self.minRelativeAltitudeLabel.layer.masksToBounds = YES;
+    self.minRelativeAltitudeLabel.layer.cornerRadius = 8;
     self.maxPressureLabel.layer.masksToBounds = YES;
     self.maxPressureLabel.layer.cornerRadius = 8;
     self.minPressureLabel.layer.masksToBounds = YES;
     self.minPressureLabel.layer.cornerRadius = 8;
 
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWMotionMonitorUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-        self.plotView.session = [VWWMotionMonitor sharedInstance].session;
+        self.plotView.motionSession = [VWWMotionMonitor sharedInstance].session;
         [self.plotView setNeedsDisplay];
     }];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWLocationMonitorUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-//        self.plotView.session = [VWWMotionMonitor sharedInstance].session;
-//        [self.plotView setNeedsDisplay];
+        self.plotView.locationSession = [VWWLocationMonitor sharedInstance].session;
+        [self.plotView setNeedsDisplay];
     }];
 
 }
@@ -56,7 +61,8 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     
-    self.plotView.session = [VWWMotionMonitor sharedInstance].session;
+    self.plotView.motionSession = [VWWMotionMonitor sharedInstance].session;
+    self.plotView.locationSession = [VWWLocationMonitor sharedInstance].session;
     [self.plotView setNeedsDisplay];
 
 }
@@ -71,11 +77,15 @@
 }
 
 -(void)plotViewDidUpdateMinMax:(VWWPlotView*)sender{
-    self.minAltitudeLabel.text = [VWWMotionMonitor sharedInstance].minAltitudeString;
-    self.maxAltitudeLabel.text = [VWWMotionMonitor sharedInstance].maxAltitudeString;
+    self.minRelativeAltitudeLabel.text = [VWWMotionMonitor sharedInstance].minAltitudeString;
+    self.maxRelativeAltitudeLabel.text = [VWWMotionMonitor sharedInstance].maxAltitudeString;
     self.minPressureLabel.text = [VWWMotionMonitor sharedInstance].minPressureString;
     self.maxPressureLabel.text = [VWWMotionMonitor sharedInstance].maxPressureString;
 
+    self.minSpeedLabel.text = [VWWLocationMonitor sharedInstance].minSpeedString;
+    self.maxSpeedLabel.text = [VWWLocationMonitor sharedInstance].maxSpeedString;
+    self.minAbsoluteAltitudeLabel.text = [VWWLocationMonitor sharedInstance].minAbsoluteAltitudeString;
+    self.maxAbsoluteAltitudeLabel.text = [VWWLocationMonitor sharedInstance].maxAbsoluteAltitudeString;
 }
 
 

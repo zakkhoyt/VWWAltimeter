@@ -52,9 +52,8 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
     
     
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWLocationMonitorUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-        self.altitudeLabel.text = [VWWLocationMonitor sharedInstance].altitudeString;
-        self.pressureLabel.text = [VWWLocationMonitor sharedInstance].speedString;
-//        self.pressureLabel.text = [VWWLocationMonitor sharedInstance].pressureString;
+//        self.altitudeLabel.text = [VWWLocationMonitor sharedInstance].altitudeString;
+//        self.pressureLabel.text = [VWWLocationMonitor sharedInstance].speedString;
     }];
 
 
@@ -124,25 +123,16 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
     self.altitudeLabel.text = @"△ Altitude\n...";
     self.pressureLabel.text = @"Pressure\n...";
 
-#if defined(VWW_FORCE_GPS)
-    [[VWWLocationMonitor sharedInstance] start];
-    
-    self.altitudeLabel.text = @"△ Altitude\nn/a";
-    self.pressureLabel.text = @"Pressure\nn/a";
-    NSLog(@"Altimeter not available");
-    
-#else
+
     if([CMAltimeter isRelativeAltitudeAvailable]){
         [[VWWMotionMonitor sharedInstance] start];
     } else {
-        
-        [[VWWLocationMonitor sharedInstance] start];
-        
         self.altitudeLabel.text = @"△ Altitude\nn/a";
         self.pressureLabel.text = @"Pressure\nn/a";
         NSLog(@"Altimeter not available");
     }
-#endif
+
+    [[VWWLocationMonitor sharedInstance] start];
 }
 
 
@@ -171,7 +161,9 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
         [self presentViewController:activityViewController animated:YES completion:nil];
     };
 
-    NSString *json = [VWWMotionMonitor sharedInstance].jsonRepresentation;
+    NSString *motionJSON = [VWWMotionMonitor sharedInstance].jsonRepresentation;
+    NSString *locationJSON = [VWWLocationMonitor sharedInstance].jsonRepresentation;
+    NSString *json = [NSString stringWithFormat:@"%@\n%@", motionJSON, locationJSON];
     shareSessionString(json);
 }
 
@@ -199,7 +191,8 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
     
     
     VWWPlotView *plotView = [[VWWPlotView alloc]initWithFrame:CGRectMake(0, 0, 400, 300)];
-    plotView.session = [VWWMotionMonitor sharedInstance].session;
+    plotView.motionSession = [VWWMotionMonitor sharedInstance].session;
+    plotView.locationSession = [VWWLocationMonitor sharedInstance].session;
     [plotView setNeedsDisplay];
     UIImage *image = [self imageFromView:plotView];
     
