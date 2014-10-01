@@ -90,12 +90,12 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
     [actionSheet showInView:self.view];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:VWWSegueMainToSummary]){
-        VWWSummaryViewController *vc = segue.destinationViewController;
-
-    }
-}
+//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+//    if([segue.identifier isEqualToString:VWWSegueMainToSummary]){
+//        VWWSummaryViewController *vc = segue.destinationViewController;
+//
+//    }
+//}
 
 
 -(void)timerAction:(id)sender{
@@ -136,13 +136,14 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
         NSMutableArray *activities = [@[]mutableCopy];
         UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:items
                                                                                             applicationActivities:activities];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         [activityViewController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError){
             if(completed){
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self dismissViewControllerAnimated:YES completion:^{
                 }];
             }
+            
         }];
         
         [self presentViewController:activityViewController animated:YES completion:nil];
@@ -160,20 +161,22 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
         NSMutableArray *activities = [@[]mutableCopy];
         UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:items
                                                                                             applicationActivities:activities];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         [activityViewController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError){
             if(completed){
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self dismissViewControllerAnimated:YES completion:^{
                 }];
             }
+            
         }];
         
         [self presentViewController:activityViewController animated:YES completion:nil];
     };
     
     
-    VWWPlotView *plotView = [[VWWPlotView alloc]initWithFrame:CGRectMake(0, 0, [VWWMotionMonitor sharedInstance].session.count, self.view.bounds.size.height)];
+    
+    VWWPlotView *plotView = [[VWWPlotView alloc]initWithFrame:CGRectMake(0, 0, 400, 300)];
     plotView.session = [VWWMotionMonitor sharedInstance].session;
     [plotView setNeedsDisplay];
     UIImage *image = [self imageFromView:plotView];

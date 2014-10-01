@@ -37,12 +37,12 @@
                                     <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="78"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to reset the altimeter or view settings and session." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LxD-xz-AFM">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="58"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to reset the altimeter, view settings, view the plot, or export the session." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LxD-xz-AFM">
+                                <rect key="frame" x="16" y="0.0" width="568" height="58"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="tWW-EK-Bhg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="18"/>
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -52,7 +52,7 @@
                             <constraint firstItem="VR4-3V-X5G" firstAttribute="leading" secondItem="aZA-d7-hog" secondAttribute="trailing" id="0gh-hz-bgZ"/>
                             <constraint firstAttribute="trailing" secondItem="VR4-3V-X5G" secondAttribute="trailing" id="95D-8X-oha"/>
                             <constraint firstItem="aZA-d7-hog" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="99V-Ly-NV8"/>
-                            <constraint firstAttribute="trailing" secondItem="LxD-xz-AFM" secondAttribute="trailing" id="Ar6-hy-pKQ"/>
+                            <constraint firstAttribute="trailing" secondItem="LxD-xz-AFM" secondAttribute="trailing" constant="16" id="Ar6-hy-pKQ"/>
                             <constraint firstAttribute="trailing" secondItem="aZA-d7-hog" secondAttribute="trailing" id="FB1-nA-o4v"/>
                             <constraint firstItem="VR4-3V-X5G" firstAttribute="top" secondItem="aZA-d7-hog" secondAttribute="bottom" id="GUL-ZQ-fzP"/>
                             <constraint firstAttribute="trailing" secondItem="aZA-d7-hog" secondAttribute="trailing" id="GtO-Ks-khF"/>
@@ -63,7 +63,7 @@
                             <constraint firstItem="aZA-d7-hog" firstAttribute="leading" secondItem="VR4-3V-X5G" secondAttribute="trailing" id="gaj-RK-RIC"/>
                             <constraint firstItem="VR4-3V-X5G" firstAttribute="width" secondItem="aZA-d7-hog" secondAttribute="width" id="iC1-WL-Asz"/>
                             <constraint firstItem="LxD-xz-AFM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="kNn-Jj-f25"/>
-                            <constraint firstItem="LxD-xz-AFM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kT1-Kd-4ez"/>
+                            <constraint firstItem="LxD-xz-AFM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="kT1-Kd-4ez"/>
                             <constraint firstItem="aZA-d7-hog" firstAttribute="height" secondItem="VR4-3V-X5G" secondAttribute="height" id="lHQ-S4-19k"/>
                             <constraint firstItem="VR4-3V-X5G" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mDy-zg-Sv0"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VR4-3V-X5G" secondAttribute="bottom" id="yDU-Tf-0Vc"/>
