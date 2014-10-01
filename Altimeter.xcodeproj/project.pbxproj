@@ -18,6 +18,7 @@
 		C6CEB79519DB332200B9FE20 /* VWWSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB79419DB332200B9FE20 /* VWWSummaryViewController.m */; };
 		C6CEB79819DB33D900B9FE20 /* VWWPlotView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB79719DB33D900B9FE20 /* VWWPlotView.m */; };
 		CF4C02B619DB8B0500EA5671 /* VWWMotionMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4C02B519DB8B0500EA5671 /* VWWMotionMonitor.m */; };
+		CF4C02BA19DB99ED00EA5671 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4C02B919DB99ED00EA5671 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		C6CEB79719DB33D900B9FE20 /* VWWPlotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWPlotView.m; sourceTree = "<group>"; };
 		CF4C02B419DB8B0500EA5671 /* VWWMotionMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWMotionMonitor.h; sourceTree = "<group>"; };
 		CF4C02B519DB8B0500EA5671 /* VWWMotionMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWMotionMonitor.m; sourceTree = "<group>"; };
+		CF4C02B819DB99ED00EA5671 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		CF4C02B919DB99ED00EA5671 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,7 @@
 				C6CEB78F19DB23B800B9FE20 /* ViewControllers */,
 				C6CEB77019DB14FE00B9FE20 /* Main.storyboard */,
 				C6CEB77319DB14FE00B9FE20 /* Images.xcassets */,
+				CF4C02B719DB99ED00EA5671 /* MBProgressHUD */,
 				C6CEB76619DB14FE00B9FE20 /* Supporting Files */,
 				C6CEB79019DB26CA00B9FE20 /* VWWUserDefaults.h */,
 				C6CEB79119DB26CA00B9FE20 /* VWWUserDefaults.m */,
@@ -156,6 +160,15 @@
 			);
 			name = View;
 			sourceTree = "<group>";
+		};
+		CF4C02B719DB99ED00EA5671 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				CF4C02B819DB99ED00EA5671 /* MBProgressHUD.h */,
+				CF4C02B919DB99ED00EA5671 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -260,6 +273,7 @@
 				C6CEB79819DB33D900B9FE20 /* VWWPlotView.m in Sources */,
 				C6CEB79219DB26CA00B9FE20 /* VWWUserDefaults.m in Sources */,
 				C6CEB79519DB332200B9FE20 /* VWWSummaryViewController.m in Sources */,
+				CF4C02BA19DB99ED00EA5671 /* MBProgressHUD.m in Sources */,
 				C6CEB76C19DB14FE00B9FE20 /* AppDelegate.m in Sources */,
 				C6CEB78E19DB23A400B9FE20 /* VWWSettingsViewController.m in Sources */,
 				C6CEB76919DB14FE00B9FE20 /* main.m in Sources */,

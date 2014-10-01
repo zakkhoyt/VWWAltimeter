@@ -10,7 +10,8 @@
 #import "VWWUserDefaults.h"
 #import "VWWSummaryViewController.h"
 #import "VWWMotionMonitor.h"
-
+#import "VWWPlotView.h"
+#import "MBProgressHUD.h"
 //#define VWW_FAKE_IT 1;
 @import CoreMotion;@import CoreMotion;
 
@@ -85,7 +86,7 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
                                                             delegate:self
                                                    cancelButtonTitle:@"Cancel"
                                               destructiveButtonTitle:nil
-                                                   otherButtonTitles:@"Reset Altitude", @"Summary", @"Settings", nil];
+                                                   otherButtonTitles:@"Reset Altitude", @"Summary", @"Settings", @"Share Data", @"Share Plot", nil];
     [actionSheet showInView:self.view];
 }
 
@@ -127,6 +128,71 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
     [[VWWMotionMonitor sharedInstance]reset];
 }
 
+
+-(void)shareSessionData{
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    void (^shareSessionString)(NSString *sessionString) = ^(NSString *sessionString){
+        NSMutableArray *items = [@[sessionString]mutableCopy];
+        NSMutableArray *activities = [@[]mutableCopy];
+        UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:items
+                                                                                            applicationActivities:activities];
+        
+        [activityViewController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError){
+            if(completed){
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self dismissViewControllerAnimated:YES completion:^{
+                }];
+            }
+        }];
+        
+        [self presentViewController:activityViewController animated:YES completion:nil];
+    };
+
+    NSString *json = [VWWMotionMonitor sharedInstance].jsonRepresentation;
+    shareSessionString(json);
+}
+
+
+-(void)shareSessionPlot{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    void (^shareSessionPlot)(UIImage *sessionPlot) = ^(UIImage *sessionPlot){
+        NSMutableArray *items = [@[sessionPlot]mutableCopy];
+        NSMutableArray *activities = [@[]mutableCopy];
+        UIActivityViewController *activityViewController = [[UIActivityViewController alloc]initWithActivityItems:items
+                                                                                            applicationActivities:activities];
+        
+        [activityViewController setCompletionWithItemsHandler:^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError){
+            if(completed){
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self dismissViewControllerAnimated:YES completion:^{
+                }];
+            }
+        }];
+        
+        [self presentViewController:activityViewController animated:YES completion:nil];
+    };
+    
+    
+    VWWPlotView *plotView = [[VWWPlotView alloc]initWithFrame:CGRectMake(0, 0, [VWWMotionMonitor sharedInstance].session.count, self.view.bounds.size.height)];
+    plotView.session = [VWWMotionMonitor sharedInstance].session;
+    [plotView setNeedsDisplay];
+    UIImage *image = [self imageFromView:plotView];
+    
+    if(image){
+        shareSessionPlot(image);
+    }
+}
+
+-(UIImage*)imageFromView:(UIView *)view{
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, YES, 0.0);
+    // [view.layer renderInContext:UIGraphicsGetCurrentContext()]; // <- same result...
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
+
 #pragma mark UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -136,6 +202,10 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
         [self performSegueWithIdentifier:VWWSegueMainToSummary sender:self];
     } else if(buttonIndex == 2){
         [self performSegueWithIdentifier:VWWSegueMainToSettings sender:self];
+    } else if(buttonIndex == 3){
+        [self shareSessionData];
+    } else if(buttonIndex == 4){
+        [self shareSessionPlot];
     }
     
     

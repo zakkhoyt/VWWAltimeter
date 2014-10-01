@@ -80,7 +80,6 @@
         } else {
             CGContextAddLineToPoint(cgContext, x, y);
         }
-//        NSLog(@"Drawing line to point; %@", NSStringFromCGPoint(CGPointMake(x, y)));
     }
     CGContextStrokePath(cgContext);
     xColor = [UIColor greenColor];
@@ -108,15 +107,8 @@
         } else {
             CGContextAddLineToPoint(cgContext, x, y);
         }
-//        NSLog(@"Drawing line to point; %@", NSStringFromCGPoint(CGPointMake(x, y)));
     }
     CGContextStrokePath(cgContext);
-    
-    
-    
-
-    
-
 }
 
 //-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{

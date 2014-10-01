@@ -134,6 +134,36 @@
     
 }
 
+-(NSString*)jsonRepresentation{
+    
+
+    NSMutableArray *array = [[NSMutableArray alloc]initWithCapacity:self.session.count];
+    for(CMAltitudeData *data in self.session){
+        NSDictionary *dictionary = @{@"relativeAltitude" : @(data.relativeAltitude.floatValue),
+                                     @"pressure" : @(data.pressure.floatValue)};
+        [array addObject:dictionary];
+    }
+    
+    NSString *json = [self jsonRepresentationOfArray:array prettyPrint:YES];
+    return json;
+}
+
+-(NSString*)jsonRepresentationOfArray:(NSArray*)array prettyPrint:(BOOL)prettyPrint{
+    if([NSJSONSerialization isValidJSONObject:array] == NO){
+        NSLog(@"Cannot convert object to json");
+        return nil;
+    }
+    
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:&error];
+    if (! jsonData) {
+        NSLog(@"%@", error.localizedDescription);
+        return @"{}";
+    } else {
+        return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+}
+
 -(void)notify{
     [[NSNotificationCenter defaultCenter] postNotificationName:VWWMotionMonitorUpdated object:nil];
 }

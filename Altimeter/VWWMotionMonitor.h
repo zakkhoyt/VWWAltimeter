@@ -14,6 +14,7 @@ static NSString *VWWMotionMonitorUpdated = @"VWWMotionMonitorUpdated";
 -(void)start;
 -(void)stop;
 -(void)reset;
+-(NSString*)jsonRepresentation;
 @property (nonatomic, strong, readonly) NSMutableArray *session;
 @property (nonatomic, strong, readonly) NSString *altitudeString;
 @property (nonatomic, strong, readonly) NSString *pressureString;
