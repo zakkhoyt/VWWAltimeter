@@ -9,6 +9,8 @@
 #import "VWWUserDefaults.h"
 static NSString *VWWUserDefaultsPressureUnits = @"pressureUnits";
 static NSString *VWWUserDefaultsAltitudeUnits = @"altitudeUnits";
+static NSString *VWWUserDefaultsSpeedUnits = @"speedUnits";
+
 @implementation VWWUserDefaults
 
 +(void)setPressureUnits:(NSUInteger)units{
@@ -34,4 +36,18 @@ static NSString *VWWUserDefaultsAltitudeUnits = @"altitudeUnits";
     }
     return unitsNumber.integerValue;
 }
+
+
++(void)setSpeedUnits:(NSUInteger)units{
+    [[NSUserDefaults standardUserDefaults] setObject:@(units) forKey:VWWUserDefaultsSpeedUnits];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
++(NSUInteger)speedUnits{
+    NSNumber *unitsNumber = [[NSUserDefaults standardUserDefaults] objectForKey:VWWUserDefaultsSpeedUnits];
+    if(unitsNumber == nil){
+        unitsNumber = @(0);
+    }
+    return unitsNumber.integerValue;
+}
+
 @end

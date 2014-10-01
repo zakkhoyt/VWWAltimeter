@@ -44,5 +44,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Used to help determine your altitude</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Used to help determine your altitude</string>
 </dict>
 </plist>

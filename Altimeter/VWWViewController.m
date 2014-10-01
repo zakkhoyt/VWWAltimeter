@@ -12,9 +12,12 @@
 #import "VWWMotionMonitor.h"
 #import "VWWPlotView.h"
 #import "MBProgressHUD.h"
-//#define VWW_FAKE_IT 1;
-@import CoreMotion;@import CoreMotion;
+#import "VWWLocationMonitor.h"
 
+//#define VWW_FAKE_IT 1;
+#define VWW_FORCE_GPS 1
+@import CoreMotion;
+@import CoreLocation;
 
 static NSString *VWWSegueMainToSettings = @"VWWSegueMainToSettings";
 static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
@@ -46,6 +49,14 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
         self.altitudeLabel.text = [VWWMotionMonitor sharedInstance].altitudeString;
         self.pressureLabel.text = [VWWMotionMonitor sharedInstance].pressureString;
     }];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:VWWLocationMonitorUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        self.altitudeLabel.text = [VWWLocationMonitor sharedInstance].altitudeString;
+        self.pressureLabel.text = [VWWLocationMonitor sharedInstance].speedString;
+//        self.pressureLabel.text = [VWWLocationMonitor sharedInstance].pressureString;
+    }];
+
 
 }
 
@@ -113,14 +124,25 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
     self.altitudeLabel.text = @"△ Altitude\n...";
     self.pressureLabel.text = @"Pressure\n...";
 
+#if defined(VWW_FORCE_GPS)
+    [[VWWLocationMonitor sharedInstance] start];
+    
+    self.altitudeLabel.text = @"△ Altitude\nn/a";
+    self.pressureLabel.text = @"Pressure\nn/a";
+    NSLog(@"Altimeter not available");
+    
+#else
     if([CMAltimeter isRelativeAltitudeAvailable]){
         [[VWWMotionMonitor sharedInstance] start];
     } else {
+        
+        [[VWWLocationMonitor sharedInstance] start];
+        
         self.altitudeLabel.text = @"△ Altitude\nn/a";
         self.pressureLabel.text = @"Pressure\nn/a";
         NSLog(@"Altimeter not available");
     }
-
+#endif
 }
 
 

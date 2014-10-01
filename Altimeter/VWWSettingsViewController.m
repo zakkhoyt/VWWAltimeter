@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *pressureUnitsSegment;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *altitudeUnitsSegment;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *speedUnitsSegment;
 
 @end
 
@@ -31,6 +32,7 @@
     self.navigationController.navigationBarHidden = NO;
     self.pressureUnitsSegment.selectedSegmentIndex = [VWWUserDefaults pressureUnits];
     self.altitudeUnitsSegment.selectedSegmentIndex = [VWWUserDefaults altitudeUnits];
+    self.speedUnitsSegment.selectedSegmentIndex = [VWWUserDefaults speedUnits];
 }
 
 
@@ -42,9 +44,13 @@
 - (IBAction)pressureUnitsSegmentValueChanged:(UISegmentedControl *)sender {
     [VWWUserDefaults setPressureUnits:sender.selectedSegmentIndex];
 }
+
 - (IBAction)altitudeUnitsSegmentValueChanged:(UISegmentedControl *)sender {
     [VWWUserDefaults setAltitudeUnits:sender.selectedSegmentIndex];
 }
 
+- (IBAction)speedUnitsSegmentValueChanged:(UISegmentedControl*)sender {
+    [VWWUserDefaults setSpeedUnits:sender.selectedSegmentIndex];
+}
 
 @end

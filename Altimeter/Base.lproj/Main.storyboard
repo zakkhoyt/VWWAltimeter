@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A343f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zZ6-HU-b9T">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A379a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zZ6-HU-b9T">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="300" width="600" height="300"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="78"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=compact">
                                     <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="78"/>
@@ -127,11 +127,17 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q8Y-zw-hLf" id="XUm-L7-KgI">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Altitude" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCQ-RK-5Gb">
+                                                    <rect key="frame" x="8" y="12" width="381" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
+                                                    <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yn6-N7-F45">
-                                                    <rect key="frame" x="439" y="11" width="153" height="29"/>
+                                                    <rect key="frame" x="397" y="8" width="195" height="29"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="ELd-v2-Xae"/>
-                                                        <constraint firstAttribute="width" constant="153" id="Gb6-21-Rr5"/>
+                                                        <constraint firstAttribute="width" constant="195" id="Gb6-21-Rr5"/>
                                                     </constraints>
                                                     <segments>
                                                         <segment title="meters"/>
@@ -142,17 +148,11 @@
                                                         <action selector="altitudeUnitsSegmentValueChanged:" destination="58e-bJ-hro" eventType="valueChanged" id="Vqv-tQ-m7O"/>
                                                     </connections>
                                                 </segmentedControl>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Altitude" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCQ-RK-5Gb">
-                                                    <rect key="frame" x="8" y="12" width="423" height="21"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
-                                                    <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="jCQ-RK-5Gb" firstAttribute="top" secondItem="XUm-L7-KgI" secondAttribute="top" constant="12" id="16u-ra-f7v"/>
-                                                <constraint firstItem="yn6-N7-F45" firstAttribute="top" secondItem="XUm-L7-KgI" secondAttribute="topMargin" constant="3" id="5wj-OH-c1j"/>
+                                                <constraint firstItem="yn6-N7-F45" firstAttribute="top" secondItem="XUm-L7-KgI" secondAttribute="topMargin" id="5wj-OH-c1j"/>
                                                 <constraint firstAttribute="bottom" secondItem="jCQ-RK-5Gb" secondAttribute="bottom" constant="11" id="B2f-B5-D3p"/>
                                                 <constraint firstItem="yn6-N7-F45" firstAttribute="trailing" secondItem="XUm-L7-KgI" secondAttribute="trailingMargin" id="D9Y-8s-dvK"/>
                                                 <constraint firstItem="yn6-N7-F45" firstAttribute="leading" secondItem="jCQ-RK-5Gb" secondAttribute="trailing" constant="8" id="WDP-Ne-wpW"/>
@@ -166,11 +166,17 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ixD-Ap-y9c" id="S58-cp-WQL">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pressure" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFF-ZP-JbX">
+                                                    <rect key="frame" x="8" y="12" width="381" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
+                                                    <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Roh-hz-GSP">
-                                                    <rect key="frame" x="439" y="11" width="153" height="29"/>
+                                                    <rect key="frame" x="397" y="8" width="195" height="29"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="ntR-ez-Bgf"/>
-                                                        <constraint firstAttribute="width" constant="153" id="uUv-qZ-hTE"/>
+                                                        <constraint firstAttribute="width" constant="195" id="uUv-qZ-hTE"/>
                                                     </constraints>
                                                     <segments>
                                                         <segment title="kPa"/>
@@ -178,26 +184,62 @@
                                                         <segment title="in"/>
                                                         <segment title="mm"/>
                                                     </segments>
-                                                    <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="pressureUnitsSegmentValueChanged:" destination="58e-bJ-hro" eventType="valueChanged" id="k8F-Ei-aBG"/>
                                                     </connections>
                                                 </segmentedControl>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pressure" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFF-ZP-JbX">
-                                                    <rect key="frame" x="8" y="12" width="423" height="21"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="PFF-ZP-JbX" firstAttribute="top" secondItem="S58-cp-WQL" secondAttribute="top" constant="12" id="5UJ-3X-iHz"/>
                                                 <constraint firstAttribute="bottom" secondItem="PFF-ZP-JbX" secondAttribute="bottom" constant="11" id="OWW-bb-AmG"/>
                                                 <constraint firstItem="PFF-ZP-JbX" firstAttribute="leading" secondItem="S58-cp-WQL" secondAttribute="leading" constant="8" id="XH5-uJ-8nS"/>
-                                                <constraint firstItem="Roh-hz-GSP" firstAttribute="top" secondItem="S58-cp-WQL" secondAttribute="topMargin" constant="3" id="lzH-PY-Ngf"/>
+                                                <constraint firstItem="Roh-hz-GSP" firstAttribute="top" secondItem="S58-cp-WQL" secondAttribute="topMargin" id="lzH-PY-Ngf"/>
                                                 <constraint firstItem="Roh-hz-GSP" firstAttribute="trailing" secondItem="S58-cp-WQL" secondAttribute="trailingMargin" id="mC2-Dj-mmI"/>
                                                 <constraint firstItem="Roh-hz-GSP" firstAttribute="leading" secondItem="PFF-ZP-JbX" secondAttribute="trailing" constant="8" id="sQj-jZ-fqx"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Hfs-WI-x9b">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hfs-WI-x9b" id="l5w-li-jdI">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KLk-mr-Owl">
+                                                    <rect key="frame" x="397" y="11" width="195" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="0ua-ds-Veg"/>
+                                                        <constraint firstAttribute="width" constant="195" id="CEV-p2-iRy"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="mps"/>
+                                                        <segment title="fps"/>
+                                                        <segment title="mph"/>
+                                                        <segment title="kmph"/>
+                                                    </segments>
+                                                    <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="pressureUnitsSegmentValueChanged:" destination="58e-bJ-hro" eventType="valueChanged" id="6EK-91-dch"/>
+                                                        <action selector="speedUnitsSegmentValueChanged:" destination="58e-bJ-hro" eventType="valueChanged" id="Tuo-H8-hhn"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ykj-3z-qpL">
+                                                    <rect key="frame" x="8" y="12" width="381" height="24"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="KLk-mr-Owl" firstAttribute="top" secondItem="l5w-li-jdI" secondAttribute="topMargin" constant="3" id="0uw-JA-xNH"/>
+                                                <constraint firstAttribute="bottom" secondItem="ykj-3z-qpL" secondAttribute="bottom" constant="8" id="ERP-9y-0QQ"/>
+                                                <constraint firstItem="KLk-mr-Owl" firstAttribute="trailing" secondItem="l5w-li-jdI" secondAttribute="trailingMargin" id="FY6-AX-O3K"/>
+                                                <constraint firstItem="ykj-3z-qpL" firstAttribute="top" secondItem="l5w-li-jdI" secondAttribute="top" constant="12" id="JcP-XF-kGh"/>
+                                                <constraint firstItem="ykj-3z-qpL" firstAttribute="leading" secondItem="l5w-li-jdI" secondAttribute="leading" constant="8" id="RuJ-Jn-rQf"/>
+                                                <constraint firstItem="KLk-mr-Owl" firstAttribute="leading" secondItem="ykj-3z-qpL" secondAttribute="trailing" constant="8" id="oap-ia-CFY"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -213,6 +255,7 @@
                     <connections>
                         <outlet property="altitudeUnitsSegment" destination="yn6-N7-F45" id="sfi-Uc-XTH"/>
                         <outlet property="pressureUnitsSegment" destination="Roh-hz-GSP" id="aQk-Ja-yZv"/>
+                        <outlet property="speedUnitsSegment" destination="KLk-mr-Owl" id="T14-UD-bKx"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LZg-A4-GFx" userLabel="First Responder" sceneMemberID="firstResponder"/>

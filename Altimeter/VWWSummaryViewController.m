@@ -9,6 +9,8 @@
 #import "VWWSummaryViewController.h"
 #import "VWWPlotView.h"
 #import "VWWMotionMonitor.h"
+#import "VWWLocationMonitor.h"
+
 @interface VWWSummaryViewController () <VWWPlotViewDelegate>
 @property (weak, nonatomic) IBOutlet VWWPlotView *plotView;
 @property (weak, nonatomic) IBOutlet UILabel *maxAltitudeLabel;
@@ -43,6 +45,12 @@
         self.plotView.session = [VWWMotionMonitor sharedInstance].session;
         [self.plotView setNeedsDisplay];
     }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:VWWLocationMonitorUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+//        self.plotView.session = [VWWMotionMonitor sharedInstance].session;
+//        [self.plotView setNeedsDisplay];
+    }];
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

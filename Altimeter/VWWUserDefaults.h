@@ -11,6 +11,11 @@
 @interface VWWUserDefaults : NSObject
 +(void)setPressureUnits:(NSUInteger)units;
 +(NSUInteger)pressureUnits;
+
 +(void)setAltitudeUnits:(NSUInteger)units;
 +(NSUInteger)altitudeUnits;
+
++(void)setSpeedUnits:(NSUInteger)units;
++(NSUInteger)speedUnits;
+
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C662141A19DC909400CE664D /* VWWLocationMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = C662141919DC909400CE664D /* VWWLocationMonitor.m */; };
 		C6CEB76919DB14FE00B9FE20 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB76819DB14FE00B9FE20 /* main.m */; };
 		C6CEB76C19DB14FE00B9FE20 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB76B19DB14FE00B9FE20 /* AppDelegate.m */; };
 		C6CEB76F19DB14FE00B9FE20 /* VWWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB76E19DB14FE00B9FE20 /* VWWViewController.m */; };
@@ -32,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C662141819DC909400CE664D /* VWWLocationMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWLocationMonitor.h; sourceTree = "<group>"; };
+		C662141919DC909400CE664D /* VWWLocationMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWLocationMonitor.m; sourceTree = "<group>"; };
 		C6CEB76319DB14FE00B9FE20 /* Altimeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Altimeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6CEB76719DB14FE00B9FE20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6CEB76819DB14FE00B9FE20 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -76,6 +79,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C6B9EC1819DCA3EB00ACE49A /* SensorMonitors */ = {
+			isa = PBXGroup;
+			children = (
+				CF4C02B419DB8B0500EA5671 /* VWWMotionMonitor.h */,
+				CF4C02B519DB8B0500EA5671 /* VWWMotionMonitor.m */,
+				C662141819DC909400CE664D /* VWWLocationMonitor.h */,
+				C662141919DC909400CE664D /* VWWLocationMonitor.m */,
+			);
+			name = SensorMonitors;
+			sourceTree = "<group>";
+		};
 		C6CEB75A19DB14FE00B9FE20 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +115,7 @@
 				C6CEB78F19DB23B800B9FE20 /* ViewControllers */,
 				C6CEB77019DB14FE00B9FE20 /* Main.storyboard */,
 				C6CEB77319DB14FE00B9FE20 /* Images.xcassets */,
+				C6B9EC1819DCA3EB00ACE49A /* SensorMonitors */,
 				CF4C02B719DB99ED00EA5671 /* MBProgressHUD */,
 				C6CEB76619DB14FE00B9FE20 /* Supporting Files */,
 				C6CEB79019DB26CA00B9FE20 /* VWWUserDefaults.h */,
@@ -146,8 +161,6 @@
 				C6CEB78D19DB23A400B9FE20 /* VWWSettingsViewController.m */,
 				C6CEB79319DB332200B9FE20 /* VWWSummaryViewController.h */,
 				C6CEB79419DB332200B9FE20 /* VWWSummaryViewController.m */,
-				CF4C02B419DB8B0500EA5671 /* VWWMotionMonitor.h */,
-				CF4C02B519DB8B0500EA5671 /* VWWMotionMonitor.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -275,6 +288,7 @@
 				C6CEB79519DB332200B9FE20 /* VWWSummaryViewController.m in Sources */,
 				CF4C02BA19DB99ED00EA5671 /* MBProgressHUD.m in Sources */,
 				C6CEB76C19DB14FE00B9FE20 /* AppDelegate.m in Sources */,
+				C662141A19DC909400CE664D /* VWWLocationMonitor.m in Sources */,
 				C6CEB78E19DB23A400B9FE20 /* VWWSettingsViewController.m in Sources */,
 				C6CEB76919DB14FE00B9FE20 /* main.m in Sources */,
 				CF4C02B619DB8B0500EA5671 /* VWWMotionMonitor.m in Sources */,
