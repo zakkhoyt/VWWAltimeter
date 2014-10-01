@@ -17,9 +17,5 @@
 
 @interface VWWPlotView : UIView
 @property (nonatomic, strong) NSArray *session;
-@property (nonatomic, readonly) float minAltitude;
-@property (nonatomic, readonly) float maxAltitude;
-@property (nonatomic, readonly) float minPressure;
-@property (nonatomic, readonly) float maxPressure;
 @property (nonatomic, weak) id <VWWPlotViewDelegate> delegate;
 @end

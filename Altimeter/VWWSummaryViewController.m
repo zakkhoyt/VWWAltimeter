@@ -8,7 +8,7 @@
 
 #import "VWWSummaryViewController.h"
 #import "VWWPlotView.h"
-
+#import "VWWMotionMonitor.h"
 @interface VWWSummaryViewController () <VWWPlotViewDelegate>
 @property (weak, nonatomic) IBOutlet VWWPlotView *plotView;
 @property (weak, nonatomic) IBOutlet UILabel *maxAltitudeLabel;
@@ -39,10 +39,18 @@
     self.minPressureLabel.layer.masksToBounds = YES;
     self.minPressureLabel.layer.cornerRadius = 8;
 
+    [[NSNotificationCenter defaultCenter] addObserverForName:VWWMotionMonitorUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        self.plotView.session = [VWWMotionMonitor sharedInstance].session;
+        [self.plotView setNeedsDisplay];
+    }];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    
+    self.plotView.session = [VWWMotionMonitor sharedInstance].session;
+    [self.plotView setNeedsDisplay];
+
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -55,10 +63,10 @@
 }
 
 -(void)plotViewDidUpdateMinMax:(VWWPlotView*)sender{
-    self.minAltitudeLabel.text = [NSString stringWithFormat:@"%.2f", self.plotView.minAltitude];
-    self.maxAltitudeLabel.text = [NSString stringWithFormat:@"%.2f", self.plotView.maxAltitude];
-    self.minPressureLabel.text = [NSString stringWithFormat:@"%.2f", self.plotView.minPressure];
-    self.maxPressureLabel.text = [NSString stringWithFormat:@"%.2f", self.plotView.maxPressure];
+    self.minAltitudeLabel.text = [VWWMotionMonitor sharedInstance].minAltitudeString;
+    self.maxAltitudeLabel.text = [VWWMotionMonitor sharedInstance].maxAltitudeString;
+    self.minPressureLabel.text = [VWWMotionMonitor sharedInstance].minPressureString;
+    self.maxPressureLabel.text = [VWWMotionMonitor sharedInstance].maxPressureString;
 
 }
 

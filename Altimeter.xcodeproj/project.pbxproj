@@ -17,6 +17,7 @@
 		C6CEB79219DB26CA00B9FE20 /* VWWUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB79119DB26CA00B9FE20 /* VWWUserDefaults.m */; };
 		C6CEB79519DB332200B9FE20 /* VWWSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB79419DB332200B9FE20 /* VWWSummaryViewController.m */; };
 		C6CEB79819DB33D900B9FE20 /* VWWPlotView.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB79719DB33D900B9FE20 /* VWWPlotView.m */; };
+		CF4C02B619DB8B0500EA5671 /* VWWMotionMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = CF4C02B519DB8B0500EA5671 /* VWWMotionMonitor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,8 @@
 		C6CEB79419DB332200B9FE20 /* VWWSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWSummaryViewController.m; sourceTree = "<group>"; };
 		C6CEB79619DB33D300B9FE20 /* VWWPlotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWPlotView.h; sourceTree = "<group>"; };
 		C6CEB79719DB33D900B9FE20 /* VWWPlotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWPlotView.m; sourceTree = "<group>"; };
+		CF4C02B419DB8B0500EA5671 /* VWWMotionMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWMotionMonitor.h; sourceTree = "<group>"; };
+		CF4C02B519DB8B0500EA5671 /* VWWMotionMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWMotionMonitor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,8 @@
 				C6CEB78D19DB23A400B9FE20 /* VWWSettingsViewController.m */,
 				C6CEB79319DB332200B9FE20 /* VWWSummaryViewController.h */,
 				C6CEB79419DB332200B9FE20 /* VWWSummaryViewController.m */,
+				CF4C02B419DB8B0500EA5671 /* VWWMotionMonitor.h */,
+				CF4C02B519DB8B0500EA5671 /* VWWMotionMonitor.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 				C6CEB76C19DB14FE00B9FE20 /* AppDelegate.m in Sources */,
 				C6CEB78E19DB23A400B9FE20 /* VWWSettingsViewController.m in Sources */,
 				C6CEB76919DB14FE00B9FE20 /* main.m in Sources */,
+				CF4C02B619DB8B0500EA5671 /* VWWMotionMonitor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

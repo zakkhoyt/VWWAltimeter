@@ -7,14 +7,11 @@
 //
 
 #import "VWWPlotView.h"
+#import "VWWMotionMonitor.h"
 @import CoreMotion;
 @import CoreText;
 
 @interface VWWPlotView ()
-@property (nonatomic, readwrite) float minAltitude;
-@property (nonatomic, readwrite) float maxAltitude;
-@property (nonatomic, readwrite) float minPressure;
-@property (nonatomic, readwrite) float maxPressure;
 
 @end
 @implementation VWWPlotView
@@ -23,20 +20,6 @@
 #pragma mark Public
 -(void)setSession:(NSArray*)session{
     _session = session;
-    self.minAltitude =  100000;
-    self.maxAltitude = -100000;
-    self.minPressure =  100000;
-    self.maxPressure = -100000;
-    for(CMAltitudeData *data in _session){
-        self.minAltitude = MIN(self.minAltitude, data.relativeAltitude.floatValue);
-        self.maxAltitude = MAX(self.maxAltitude, data.relativeAltitude.floatValue);
-        self.minPressure = MIN(self.minPressure, data.pressure.floatValue);
-        self.maxPressure = MAX(self.maxPressure, data.pressure.floatValue);
-    }
-    NSLog(@"minAltitude: %.2f", self.minAltitude);
-    NSLog(@"maxAltitude: %.2f", self.maxAltitude);
-    NSLog(@"minPressure: %.2f", self.minPressure);
-    NSLog(@"maxPressure: %.2f", self.maxPressure);
     
     [self.delegate plotViewDidUpdateMinMax:self];
     [self setNeedsDisplay];
@@ -69,42 +52,71 @@
     CGContextBeginPath(cgContext);
     
     const NSUInteger numSteps = self.session.count;
-    const NSUInteger stepWidth = self.bounds.size.width / (self.session.count);
+    const CGFloat stepWidth = self.bounds.size.width / (self.session.count - 1);
 
-    UIColor *xColor = [UIColor greenColor];
+//    NSLog(@"numSteps: %ld, stepWidth = %ld)
+    UIColor *xColor = [UIColor blueColor];
     CGContextSetStrokeColorWithColor(cgContext , xColor.CGColor);
-    CGContextSetLineWidth(cgContext, 2.0f);
+    CGContextSetLineWidth(cgContext, 6.0f);
     
-    
-    if(self.maxAltitude == 0){
-        NSLog(@"");
-    }
-    if(self.maxPressure == 0){
+    if([VWWMotionMonitor sharedInstance].maxPressure == 0){
         NSLog(@"");
     }
     
-    CGFloat maxY = self.bounds.size.height;
-    CGFloat minY = 0;
-    CGFloat swingY = self.maxAltitude - self.minAltitude;
-    CGFloat yAltitudeFactor = (maxY - minY) / swingY;
+    
+    CGFloat maxPressureY = self.bounds.size.height;
+    CGFloat minPressureY = 0;
+    CGFloat swingPressureY = [VWWMotionMonitor sharedInstance].maxPressure - [VWWMotionMonitor sharedInstance].minPressure;
+    CGFloat yPressureFactor = (maxPressureY - minPressureY) / swingPressureY;
     
     
     for(NSInteger index = 0; index < numSteps; index++){
         CMAltitudeData *data = self.session[index];
         CGFloat x = index * stepWidth;
-        CGFloat y = self.bounds.size.height - ((data.relativeAltitude.floatValue * yAltitudeFactor) - (self.minAltitude * yAltitudeFactor));
+        CGFloat y = ((data.pressure.floatValue * yPressureFactor) - ([VWWMotionMonitor sharedInstance].minPressure * yPressureFactor));
+        
+        if(index == 0){
+            CGContextMoveToPoint(cgContext, x, y);
+        } else {
+            CGContextAddLineToPoint(cgContext, x, y);
+        }
+//        NSLog(@"Drawing line to point; %@", NSStringFromCGPoint(CGPointMake(x, y)));
+    }
+    CGContextStrokePath(cgContext);
+    xColor = [UIColor greenColor];
+    CGContextSetStrokeColorWithColor(cgContext , xColor.CGColor);
+    CGContextSetLineWidth(cgContext, 3.0f);
+    
+    
+    if([VWWMotionMonitor sharedInstance].maxAltitude == 0){
+        NSLog(@"");
+    }
+    
+    CGFloat maxAltitudeY = self.bounds.size.height;
+    CGFloat minAltitudeY = 0;
+    CGFloat swingAltitudeY = [VWWMotionMonitor sharedInstance].maxAltitude - [VWWMotionMonitor sharedInstance].minAltitude;
+    CGFloat yAltitudeFactor = (maxAltitudeY - minAltitudeY) / swingAltitudeY;
+    
+    
+    for(NSInteger index = 0; index < numSteps; index++){
+        CMAltitudeData *data = self.session[index];
+        CGFloat x = index * stepWidth;
+        CGFloat y = self.bounds.size.height - ((data.relativeAltitude.floatValue * yAltitudeFactor) - ([VWWMotionMonitor sharedInstance].minAltitude * yAltitudeFactor));
 
         if(index == 0){
             CGContextMoveToPoint(cgContext, x, y);
         } else {
             CGContextAddLineToPoint(cgContext, x, y);
         }
-        NSLog(@"Drawing line to point; %@", NSStringFromCGPoint(CGPointMake(x, y)));
+//        NSLog(@"Drawing line to point; %@", NSStringFromCGPoint(CGPointMake(x, y)));
     }
     CGContextStrokePath(cgContext);
     
+    
+    
 
     
+
 }
 
 //-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
