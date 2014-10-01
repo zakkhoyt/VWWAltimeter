@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C662141A19DC909400CE664D /* VWWLocationMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = C662141919DC909400CE664D /* VWWLocationMonitor.m */; };
 		C6B9EC1B19DCA79500ACE49A /* VWWLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B9EC1A19DCA79500ACE49A /* VWWLocation.m */; };
+		C6B9EC1E19DCAF9000ACE49A /* VWWAltitudeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B9EC1D19DCAF9000ACE49A /* VWWAltitudeCollectionViewCell.m */; };
 		C6CEB76919DB14FE00B9FE20 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB76819DB14FE00B9FE20 /* main.m */; };
 		C6CEB76C19DB14FE00B9FE20 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB76B19DB14FE00B9FE20 /* AppDelegate.m */; };
 		C6CEB76F19DB14FE00B9FE20 /* VWWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB76E19DB14FE00B9FE20 /* VWWViewController.m */; };
@@ -38,6 +39,8 @@
 		C662141919DC909400CE664D /* VWWLocationMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWLocationMonitor.m; sourceTree = "<group>"; };
 		C6B9EC1919DCA79500ACE49A /* VWWLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWLocation.h; sourceTree = "<group>"; };
 		C6B9EC1A19DCA79500ACE49A /* VWWLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWLocation.m; sourceTree = "<group>"; };
+		C6B9EC1C19DCAF9000ACE49A /* VWWAltitudeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWAltitudeCollectionViewCell.h; sourceTree = "<group>"; };
+		C6B9EC1D19DCAF9000ACE49A /* VWWAltitudeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWAltitudeCollectionViewCell.m; sourceTree = "<group>"; };
 		C6CEB76319DB14FE00B9FE20 /* Altimeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Altimeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6CEB76719DB14FE00B9FE20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6CEB76819DB14FE00B9FE20 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -160,6 +163,8 @@
 		C6CEB78F19DB23B800B9FE20 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C6B9EC1C19DCAF9000ACE49A /* VWWAltitudeCollectionViewCell.h */,
+				C6B9EC1D19DCAF9000ACE49A /* VWWAltitudeCollectionViewCell.m */,
 				C6CEB76D19DB14FE00B9FE20 /* VWWViewController.h */,
 				C6CEB76E19DB14FE00B9FE20 /* VWWViewController.m */,
 				C6CEB78C19DB23A400B9FE20 /* VWWSettingsViewController.h */,
@@ -292,6 +297,7 @@
 				C6B9EC1B19DCA79500ACE49A /* VWWLocation.m in Sources */,
 				C6CEB79219DB26CA00B9FE20 /* VWWUserDefaults.m in Sources */,
 				C6CEB79519DB332200B9FE20 /* VWWSummaryViewController.m in Sources */,
+				C6B9EC1E19DCAF9000ACE49A /* VWWAltitudeCollectionViewCell.m in Sources */,
 				CF4C02BA19DB99ED00EA5671 /* MBProgressHUD.m in Sources */,
 				C6CEB76C19DB14FE00B9FE20 /* AppDelegate.m in Sources */,
 				C662141A19DC909400CE664D /* VWWLocationMonitor.m in Sources */,

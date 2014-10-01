@@ -13,6 +13,7 @@
 #import "VWWPlotView.h"
 #import "MBProgressHUD.h"
 #import "VWWLocationMonitor.h"
+#import "VWWAltitudeCollectionViewCell.h"
 
 //#define VWW_FAKE_IT 1;
 #define VWW_FORCE_GPS 1
@@ -24,9 +25,9 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
 
 @interface VWWViewController () <UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *altitudeLabel;
-
 @property (weak, nonatomic) IBOutlet UILabel *pressureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
 
@@ -39,21 +40,26 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    self.collectionView.collectionViewLayout = layout;
     
     [self start];
     UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(doubleTapHandler:)];
-//    doubleTapGesture.numberOfTapsRequired = 2;
     [self.view addGestureRecognizer:doubleTapGesture];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWMotionMonitorUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-        self.altitudeLabel.text = [VWWMotionMonitor sharedInstance].altitudeString;
-        self.pressureLabel.text = [VWWMotionMonitor sharedInstance].pressureString;
+        VWWAltitudeCollectionViewCell *cell = (VWWAltitudeCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+        [cell setFirstLabelText:[VWWMotionMonitor sharedInstance].altitudeString color:[UIColor greenColor]];
+        [cell setSecondLabelText:[VWWMotionMonitor sharedInstance].pressureString color:[UIColor yellowColor]];
     }];
     
     
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWLocationMonitorUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-//        self.altitudeLabel.text = [VWWLocationMonitor sharedInstance].altitudeString;
-//        self.pressureLabel.text = [VWWLocationMonitor sharedInstance].speedString;
+        VWWAltitudeCollectionViewCell *cell = (VWWAltitudeCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];
+        [cell setFirstLabelText:[VWWLocationMonitor sharedInstance].absoluteAltitudeString color:[UIColor redColor]];
+        [cell setSecondLabelText:[VWWLocationMonitor sharedInstance].speedString color:[UIColor cyanColor]];
+
     }];
 
 
@@ -77,7 +83,6 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
     UIFont *font = nil;
     CGFloat portraitHeight = MAX(self.view.bounds.size.width, self.view.bounds.size.height);
     if(portraitHeight <= 480){
-        
         font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:48];
     } else if(portraitHeight <= 568){
         font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:58];
@@ -91,6 +96,27 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
     
     NSLog(@"");
 }
+
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    [self.collectionView.collectionViewLayout invalidateLayout];
+}
+//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+//    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+////    [self.collectionView.collectionViewLayout invalidateLayout];
+////    [self.collectionView layoutSubviews];
+////    [self.view layoutSubviews];
+//}
+//
+//- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+//    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+////    [self.collectionView.collectionViewLayout invalidateLayout];
+////    [self.collectionView layoutSubviews];
+////    [self.view layoutSubviews];
+//
+//}
+
 -(void)doubleTapHandler:(UITapGestureRecognizer*)sender{
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil
                                                             delegate:self
@@ -210,6 +236,71 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
     
     return img;
 }
+
+
+
+#pragma mark UICollectionViewFlowLayoutDelegate
+#pragma mark UICollectionViewDelegateFlowLayout
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"bounds: %@", NSStringFromCGRect(self.view.bounds));
+    NSLog(@"frame: %@", NSStringFromCGRect(self.view.frame));
+    return self.view.bounds.size;
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 0;
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 0;
+}
+
+#pragma mark UICollectionViewDatasource
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 2;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    VWWAltitudeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"VWWAltitudeCollectionViewCell" forIndexPath:indexPath];
+    if(indexPath.item == 0){
+        if([VWWMotionMonitor sharedInstance].altitudeString){
+            [cell setFirstLabelText:[VWWMotionMonitor sharedInstance].altitudeString color:[UIColor greenColor]];
+        } else {
+            [cell setFirstLabelText:@"△ Altitude\n..." color:[UIColor greenColor]];
+        }
+        if([VWWMotionMonitor sharedInstance].pressureString){
+            [cell setSecondLabelText:[VWWMotionMonitor sharedInstance].pressureString color:[UIColor yellowColor]];
+        } else {
+            [cell setSecondLabelText:@"Pressure\n..." color:[UIColor yellowColor]];
+        }
+        
+        
+    } else if(indexPath.item == 1){
+        if([VWWLocationMonitor sharedInstance].absoluteAltitudeString){
+            [cell setFirstLabelText:[VWWLocationMonitor sharedInstance].absoluteAltitudeString color:[UIColor redColor]];
+        } else {
+            [cell setFirstLabelText:@"Altitude\n..." color:[UIColor redColor]];
+        }
+        
+        if([VWWLocationMonitor sharedInstance].speedString){
+            [cell setSecondLabelText:[VWWLocationMonitor sharedInstance].speedString color:[UIColor cyanColor]];
+        } else {
+            [cell setSecondLabelText:@"Speed\n..." color:[UIColor cyanColor]];
+        }
+        
+        
+    }
+    return cell;
+}
+
+
+
+
+
+
 
 #pragma mark UIActionSheetDelegate
 

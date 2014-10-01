@@ -138,8 +138,7 @@
     NSString *altitudeUnitsString = [VWWUserDefaults altitudeUnits] == 0 ? @"m" : @"f";
 
     
-    self.absoluteAltitudeString = [NSString stringWithFormat:@"△ Altitude\n%@%.2f%@",
-                           absoluteAltitude > 0 ? @"⬆︎" : @"⬇︎",
+    self.absoluteAltitudeString = [NSString stringWithFormat:@"Altitude\n%.2f%@",
                            fabs(absoluteAltitude),
                            altitudeUnitsString];
     self.minAbsoluteAltitudeString = [NSString stringWithFormat:@"%.2f%@", self.minAbsoluteAltitude, altitudeUnitsString];
