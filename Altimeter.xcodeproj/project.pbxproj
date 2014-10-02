@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C662141A19DC909400CE664D /* VWWLocationMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = C662141919DC909400CE664D /* VWWLocationMonitor.m */; };
+		C666EE3D19DE0B5B00879B72 /* VWWSession.m in Sources */ = {isa = PBXBuildFile; fileRef = C666EE3C19DE0B5B00879B72 /* VWWSession.m */; };
 		C6B9EC1B19DCA79500ACE49A /* VWWLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B9EC1A19DCA79500ACE49A /* VWWLocation.m */; };
 		C6B9EC1E19DCAF9000ACE49A /* VWWAltitudeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B9EC1D19DCAF9000ACE49A /* VWWAltitudeCollectionViewCell.m */; };
 		C6CEB76919DB14FE00B9FE20 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6CEB76819DB14FE00B9FE20 /* main.m */; };
@@ -37,6 +38,9 @@
 /* Begin PBXFileReference section */
 		C662141819DC909400CE664D /* VWWLocationMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWLocationMonitor.h; sourceTree = "<group>"; };
 		C662141919DC909400CE664D /* VWWLocationMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWLocationMonitor.m; sourceTree = "<group>"; };
+		C666EE3619DE0A2400879B72 /* Altimeter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Altimeter.entitlements; sourceTree = "<group>"; };
+		C666EE3B19DE0B5B00879B72 /* VWWSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWSession.h; sourceTree = "<group>"; };
+		C666EE3C19DE0B5B00879B72 /* VWWSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWSession.m; sourceTree = "<group>"; };
 		C6B9EC1919DCA79500ACE49A /* VWWLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWLocation.h; sourceTree = "<group>"; };
 		C6B9EC1A19DCA79500ACE49A /* VWWLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VWWLocation.m; sourceTree = "<group>"; };
 		C6B9EC1C19DCAF9000ACE49A /* VWWAltitudeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VWWAltitudeCollectionViewCell.h; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 				C662141919DC909400CE664D /* VWWLocationMonitor.m */,
 				C6B9EC1919DCA79500ACE49A /* VWWLocation.h */,
 				C6B9EC1A19DCA79500ACE49A /* VWWLocation.m */,
+				C666EE3B19DE0B5B00879B72 /* VWWSession.h */,
+				C666EE3C19DE0B5B00879B72 /* VWWSession.m */,
 			);
 			name = SensorMonitors;
 			sourceTree = "<group>";
@@ -119,6 +125,7 @@
 		C6CEB76519DB14FE00B9FE20 /* Altimeter */ = {
 			isa = PBXGroup;
 			children = (
+				C666EE3619DE0A2400879B72 /* Altimeter.entitlements */,
 				C6CEB79919DB33DC00B9FE20 /* View */,
 				C6CEB78F19DB23B800B9FE20 /* ViewControllers */,
 				C6CEB77019DB14FE00B9FE20 /* Main.storyboard */,
@@ -242,6 +249,15 @@
 				TargetAttributes = {
 					C6CEB76219DB14FE00B9FE20 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = F2M6E998ZE;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.HealthKit = {
+								enabled = 0;
+							};
+						};
 					};
 					C6CEB77B19DB14FE00B9FE20 = {
 						CreatedOnToolsVersion = 6.0;
@@ -292,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C666EE3D19DE0B5B00879B72 /* VWWSession.m in Sources */,
 				C6CEB76F19DB14FE00B9FE20 /* VWWViewController.m in Sources */,
 				C6CEB79819DB33D900B9FE20 /* VWWPlotView.m in Sources */,
 				C6B9EC1B19DCA79500ACE49A /* VWWLocation.m in Sources */,
@@ -419,11 +436,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Altimeter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a44d91b6-fcac-42b3-a018-25b63725c2db";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -432,11 +450,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Altimeter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a44d91b6-fcac-42b3-a018-25b63725c2db";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

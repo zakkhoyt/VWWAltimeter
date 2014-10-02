@@ -22,6 +22,10 @@
 	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Used to help determine your altitude</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Used to help determine your altitude</string>
 	<key>UILaunchStoryboardName</key>
 	<string>Main</string>
 	<key>UIMainStoryboardFile</key>
@@ -44,9 +48,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Used to help determine your altitude</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Used to help determine your altitude</string>
 </dict>
 </plist>

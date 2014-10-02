@@ -28,7 +28,7 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
 @property (weak, nonatomic) IBOutlet UILabel *pressureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
+@property (nonatomic, strong) NSIndexPath *indexPath;
 @end
 
 @implementation VWWViewController
@@ -59,9 +59,14 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
         VWWAltitudeCollectionViewCell *cell = (VWWAltitudeCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];
         [cell setFirstLabelText:[VWWLocationMonitor sharedInstance].absoluteAltitudeString color:[UIColor redColor]];
         [cell setSecondLabelText:[VWWLocationMonitor sharedInstance].speedString color:[UIColor cyanColor]];
-
     }];
 
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:VWWMotionMonitorActivityUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        VWWAltitudeCollectionViewCell *cell = (VWWAltitudeCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:2 inSection:0]];
+        [cell setFirstLabelText:[VWWMotionMonitor sharedInstance].activityConfidenceString color:[UIColor purpleColor]];
+        [cell setSecondLabelText:[VWWMotionMonitor sharedInstance].activityString color:[UIColor orangeColor]];
+    }];
 
 }
 
@@ -100,10 +105,15 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator{
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+//    NSUInteger index = self.collectionView.contentOffset.x / self.view.bounds.size.width;
+//    self.indexPath = [NSIndexPath indexPathForItem:index inSection:0];
     [self.collectionView.collectionViewLayout invalidateLayout];
+//    [self.collectionView scrollToItemAtIndexPath:self.indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
 }
 //- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
 //    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+//    NSUInteger index = self.collectionView.contentOffset.x / self.view.bounds.size.width;
+//    self.indexPath = [NSIndexPath indexPathForItem:index inSection:0];
 ////    [self.collectionView.collectionViewLayout invalidateLayout];
 ////    [self.collectionView layoutSubviews];
 ////    [self.view layoutSubviews];
@@ -111,6 +121,8 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
 //
 //- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
 //    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+//
+//
 ////    [self.collectionView.collectionViewLayout invalidateLayout];
 ////    [self.collectionView layoutSubviews];
 ////    [self.view layoutSubviews];
@@ -260,7 +272,7 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 2;
+    return 3;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -289,6 +301,20 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
             [cell setSecondLabelText:[VWWLocationMonitor sharedInstance].speedString color:[UIColor cyanColor]];
         } else {
             [cell setSecondLabelText:@"Speed\n..." color:[UIColor cyanColor]];
+        }
+        
+        
+    } else if(indexPath.item == 1){
+        if([VWWMotionMonitor sharedInstance].activityConfidenceString){
+            [cell setFirstLabelText:[VWWMotionMonitor sharedInstance].activityConfidenceString color:[UIColor purpleColor]];
+        } else {
+            [cell setFirstLabelText:@"Confidence\n..." color:[UIColor purpleColor]];
+        }
+        
+        if([VWWMotionMonitor sharedInstance].activityString){
+            [cell setSecondLabelText:[VWWMotionMonitor sharedInstance].activityString color:[UIColor orangeColor]];
+        } else {
+            [cell setSecondLabelText:@"Activity\n..." color:[UIColor orangeColor]];
         }
         
         

@@ -12,18 +12,29 @@
 
 @interface VWWMotionMonitor ()
 @property (nonatomic, strong) CMAltimeter *altimeterManager;
+@property (nonatomic, strong) CMMotionActivityManager *motionActivity;
+@property (nonatomic, strong) CMPedometer *pedometer;
+
 @property (nonatomic, strong, readwrite) NSMutableArray *session;
+
 @property (nonatomic, strong, readwrite) NSString *altitudeString;
+@property (nonatomic, strong, readwrite) NSString *minAltitudeString;
+@property (nonatomic, strong, readwrite) NSString *maxAltitudeString;
+@property (nonatomic, readwrite) float minAltitude;
+@property (nonatomic, readwrite) float maxAltitude;
+
+
 @property (nonatomic, strong, readwrite) NSString *pressureString;
 @property (nonatomic, strong, readwrite) NSString *minPressureString;
 @property (nonatomic, strong, readwrite) NSString *maxPressureString;
-@property (nonatomic, strong, readwrite) NSString *minAltitudeString;
-@property (nonatomic, strong, readwrite) NSString *maxAltitudeString;
-
-@property (nonatomic, readwrite) float minAltitude;
-@property (nonatomic, readwrite) float maxAltitude;
 @property (nonatomic, readwrite) float minPressure;
 @property (nonatomic, readwrite) float maxPressure;
+
+
+@property (nonatomic, strong, readwrite) NSString *activityString;
+@property (nonatomic, strong, readwrite) NSString *activityConfidenceString;
+
+@property (nonatomic, strong, readwrite) NSString *stepsString;
 
 @end
 
@@ -41,7 +52,18 @@
 {
     self = [super init];
     if (self) {
-        self.altimeterManager = [[CMAltimeter alloc]init];
+        if([CMAltimeter isRelativeAltitudeAvailable]){
+            self.altimeterManager = [[CMAltimeter alloc]init];
+        }
+        
+        if([CMMotionActivityManager isActivityAvailable]){
+            self.motionActivity = [[CMMotionActivityManager alloc]init];
+        }
+        
+        if([CMPedometer isStepCountingAvailable]){
+            self.pedometer = [[CMPedometer alloc]init];
+        }
+
         self.session = [@[]mutableCopy];
         self.minAltitude =  100000;
         self.maxAltitude = -100000;
@@ -66,10 +88,10 @@
         self.minPressure = MIN(self.minPressure, altitudeData.pressure.floatValue);
         self.maxPressure = MAX(self.maxPressure, altitudeData.pressure.floatValue);
         
-        NSLog(@"minAltitude: %.2f", self.minAltitude);
-        NSLog(@"maxAltitude: %.2f", self.maxAltitude);
-        NSLog(@"minPressure: %.2f", self.minPressure);
-        NSLog(@"maxPressure: %.2f", self.maxPressure);
+//        NSLog(@"minAltitude: %.2f", self.minAltitude);
+//        NSLog(@"maxAltitude: %.2f", self.maxAltitude);
+//        NSLog(@"minPressure: %.2f", self.minPressure);
+//        NSLog(@"maxPressure: %.2f", self.maxPressure);
 
         
         
@@ -119,12 +141,48 @@
         self.maxPressureString = [NSString stringWithFormat:@"%.2f%@", self.maxPressure, pressureUnitsString];
 
         
-        [self notify];
+        [[NSNotificationCenter defaultCenter] postNotificationName:VWWMotionMonitorUpdated object:nil];
+    }];
+    
+    
+    
+    [self.motionActivity startActivityUpdatesToQueue:[[NSOperationQueue alloc]init] withHandler:^(CMMotionActivity *activity) {
+        
+        if(activity.automotive){
+            self.activityString = @"Driving";
+        } else if(activity.cycling){
+            self.activityString = @"Cycling";
+        } else if(activity.running){
+            self.activityString = @"Running";
+        } else if(activity.walking){
+            self.activityString = @"Walking";
+        } else if(activity.stationary){
+            self.activityString = @"Doing Nothing";
+        } else if(activity.unknown){
+            self.activityString = @"??";
+        }
+        
+        if(activity.confidence == CMMotionActivityConfidenceHigh){
+            self.activityConfidenceString = @"Very confident that you're ";
+        } else if(activity.confidence == CMMotionActivityConfidenceMedium){
+            self.activityConfidenceString = @"It looks like you're ";
+        } else if(activity.confidence == CMMotionActivityConfidenceLow){
+            self.activityConfidenceString = @"Guessing that you're ";
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:VWWMotionMonitorActivityUpdated object:nil];
+        
     }];
 
+    
+    [self.pedometer startPedometerUpdatesFromDate:[NSDate date] withHandler:^(CMPedometerData *pedometerData, NSError *error) {
+        self.stepsString = [NSString stringWithFormat:@"%ld steps", (long)pedometerData.numberOfSteps];
+        [[NSNotificationCenter defaultCenter] postNotificationName:VWWMotionMonitorPedometerUpdated object:nil];
+    }];
 }
 -(void)stop{
     [self.altimeterManager stopRelativeAltitudeUpdates];
+    [self.motionActivity stopActivityUpdates];
+    [self.pedometer stopPedometerUpdates];
     
 }
 -(void)reset{
