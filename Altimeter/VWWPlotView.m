@@ -178,7 +178,9 @@
     CGFloat minSpeedY = 0;
     CGFloat swingSpeedY = [VWWLocationMonitor sharedInstance].maxSpeed - [VWWLocationMonitor sharedInstance].minSpeed;
     CGFloat ySpeedFactor = (maxSpeedY - minSpeedY) / swingSpeedY;
-    if(ySpeedFactor > 10000000) ySpeedFactor = 0.5;
+    if(ySpeedFactor > 10000000) {
+        ySpeedFactor = 0.001;   
+    }
     
     for(NSInteger index = 0; index < numSteps; index++){
         VWWLocation *data = self.locationSession[index];

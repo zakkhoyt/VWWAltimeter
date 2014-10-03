@@ -29,6 +29,8 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSIndexPath *indexPath;
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+
 @end
 
 @implementation VWWViewController
@@ -51,13 +53,13 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWMotionMonitorUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         VWWAltitudeCollectionViewCell *cell = (VWWAltitudeCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
         [cell setFirstLabelText:[VWWMotionMonitor sharedInstance].altitudeString color:[UIColor greenColor]];
-        [cell setSecondLabelText:[VWWMotionMonitor sharedInstance].pressureString color:[UIColor yellowColor]];
+        [cell setSecondLabelText:[VWWLocationMonitor sharedInstance].absoluteAltitudeString color:[UIColor redColor]];
     }];
     
     
     [[NSNotificationCenter defaultCenter] addObserverForName:VWWLocationMonitorUpdated object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         VWWAltitudeCollectionViewCell *cell = (VWWAltitudeCollectionViewCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:1 inSection:0]];
-        [cell setFirstLabelText:[VWWLocationMonitor sharedInstance].absoluteAltitudeString color:[UIColor redColor]];
+        [cell setFirstLabelText:[VWWMotionMonitor sharedInstance].pressureString color:[UIColor yellowColor]];
         [cell setSecondLabelText:[VWWLocationMonitor sharedInstance].speedString color:[UIColor cyanColor]];
     }];
 
@@ -68,6 +70,7 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
         [cell setSecondLabelText:[VWWMotionMonitor sharedInstance].activityString color:[UIColor orangeColor]];
     }];
 
+    [self.view bringSubviewToFront:self.pageControl];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -134,7 +137,7 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
                                                             delegate:self
                                                    cancelButtonTitle:@"Cancel"
                                               destructiveButtonTitle:nil
-                                                   otherButtonTitles:@"Reset Altitude", @"Summary", @"Settings", @"Share Data", @"Share Plot", nil];
+                                                   otherButtonTitles:@"Reset", @"Summary", @"Settings", @"Share Data", @"Share Plot", nil];
     [actionSheet showInView:self.view];
 }
 
@@ -283,19 +286,18 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
         } else {
             [cell setFirstLabelText:@"△ Altitude\n..." color:[UIColor greenColor]];
         }
-        if([VWWMotionMonitor sharedInstance].pressureString){
-            [cell setSecondLabelText:[VWWMotionMonitor sharedInstance].pressureString color:[UIColor yellowColor]];
-        } else {
-            [cell setSecondLabelText:@"Pressure\n..." color:[UIColor yellowColor]];
-        }
-        
-        
-    } else if(indexPath.item == 1){
         if([VWWLocationMonitor sharedInstance].absoluteAltitudeString){
-            [cell setFirstLabelText:[VWWLocationMonitor sharedInstance].absoluteAltitudeString color:[UIColor redColor]];
+            [cell setSecondLabelText:[VWWLocationMonitor sharedInstance].absoluteAltitudeString color:[UIColor redColor]];
         } else {
-            [cell setFirstLabelText:@"Altitude\n..." color:[UIColor redColor]];
+            [cell setSecondLabelText:@"Altitude ASL\n..." color:[UIColor redColor]];
         }
+    } else if(indexPath.item == 1){
+        if([VWWMotionMonitor sharedInstance].pressureString){
+            [cell setFirstLabelText:[VWWMotionMonitor sharedInstance].pressureString color:[UIColor yellowColor]];
+        } else {
+            [cell setFirstLabelText:@"Pressure\n..." color:[UIColor yellowColor]];
+        }
+
         
         if([VWWLocationMonitor sharedInstance].speedString){
             [cell setSecondLabelText:[VWWLocationMonitor sharedInstance].speedString color:[UIColor cyanColor]];
@@ -304,7 +306,7 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
         }
         
         
-    } else if(indexPath.item == 1){
+    } else if(indexPath.item == 2){
         if([VWWMotionMonitor sharedInstance].activityConfidenceString){
             [cell setFirstLabelText:[VWWMotionMonitor sharedInstance].activityConfidenceString color:[UIColor purpleColor]];
         } else {
@@ -326,7 +328,11 @@ static NSString *VWWSegueMainToSummary = @"VWWSegueMainToSummary";
 
 
 
-
+#pragma mark UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSUInteger page = (self.collectionView.contentOffset.x + self.view.bounds.size.width / 2.0) / self.view.bounds.size.width;
+    self.pageControl.currentPage = page;
+}
 
 #pragma mark UIActionSheetDelegate
 

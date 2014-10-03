@@ -68,7 +68,8 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self.navigationController setNavigationBarHidden:!self.navigationController.navigationBarHidden animated:YES];
+//    [self.navigationController setNavigationBarHidden:!self.navigationController.navigationBarHidden animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark VWWPlotViewDelegate

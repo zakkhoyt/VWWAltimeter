@@ -52,7 +52,12 @@
         _session = [@[]mutableCopy];
         _locationManager = [[CLLocationManager alloc]init];
         _locationManager.delegate = self;
-        
+        self.minAbsoluteAltitude =  100000;
+        self.maxAbsoluteAltitude = -100000;
+        self.minRelativeAltitude =  100000;
+        self.maxRelativeAltitude = -100000;
+        self.minSpeed =  100000;
+        self.maxSpeed = -100000;
     }
     return self;
 }
@@ -73,6 +78,7 @@
     [self stop];
     self.location = nil;
     self.baseAltitude = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:VWWLocationMonitorUpdated object:nil];
 }
 
 -(NSString*)jsonRepresentation{
@@ -138,7 +144,7 @@
     NSString *altitudeUnitsString = [VWWUserDefaults altitudeUnits] == 0 ? @"m" : @"f";
 
     
-    self.absoluteAltitudeString = [NSString stringWithFormat:@"Altitude\n%.2f%@",
+    self.absoluteAltitudeString = [NSString stringWithFormat:@"Altitude ASL\n%.2f%@",
                            fabs(absoluteAltitude),
                            altitudeUnitsString];
     self.minAbsoluteAltitudeString = [NSString stringWithFormat:@"%.2f%@", self.minAbsoluteAltitude, altitudeUnitsString];

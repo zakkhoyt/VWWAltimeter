@@ -26,6 +26,15 @@
                                 <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Dxa-Yb-Z7N">
+                                <rect key="frame" x="281" y="563" width="39" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="E83-DF-gLa"/>
+                                    <constraint firstAttribute="width" constant="39" id="i24-aS-cav"/>
+                                </constraints>
+                                <color key="pageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bnq-U2-TX9">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,22 +94,22 @@
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
-                                                <exclude reference="MEV-1q-7Tq"/>
-                                                <exclude reference="t0n-46-XW9"/>
                                                 <exclude reference="lQq-ou-JbN"/>
                                                 <exclude reference="m0J-b1-uIg"/>
+                                                <exclude reference="MEV-1q-7Tq"/>
+                                                <exclude reference="t0n-46-XW9"/>
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=compact">
                                             <mask key="constraints">
+                                                <exclude reference="eeu-qa-ceZ"/>
+                                                <include reference="lQq-ou-JbN"/>
+                                                <include reference="m0J-b1-uIg"/>
                                                 <exclude reference="D06-dU-Dju"/>
                                                 <exclude reference="Go1-sX-RyG"/>
                                                 <include reference="MEV-1q-7Tq"/>
                                                 <exclude reference="WLu-VP-VNi"/>
                                                 <include reference="t0n-46-XW9"/>
-                                                <exclude reference="eeu-qa-ceZ"/>
-                                                <include reference="lQq-ou-JbN"/>
-                                                <include reference="m0J-b1-uIg"/>
                                             </mask>
                                         </variation>
                                         <connections>
@@ -117,9 +126,11 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Dxa-Yb-Z7N" secondAttribute="bottom" id="18i-3K-P2X"/>
                             <constraint firstAttribute="trailing" secondItem="LxD-xz-AFM" secondAttribute="trailing" constant="16" id="Gu5-0S-qe4"/>
                             <constraint firstItem="LxD-xz-AFM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="Npf-6g-AX6"/>
                             <constraint firstItem="bnq-U2-TX9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TL3-s8-NOB"/>
+                            <constraint firstAttribute="centerX" secondItem="Dxa-Yb-Z7N" secondAttribute="centerX" constant="-0.5" id="biR-w8-IIc"/>
                             <constraint firstAttribute="trailing" secondItem="bnq-U2-TX9" secondAttribute="trailing" id="btW-KB-3cN"/>
                             <constraint firstItem="bnq-U2-TX9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="fWN-pU-ANl"/>
                             <constraint firstItem="LxD-xz-AFM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="lMb-nf-qZr"/>
@@ -130,6 +141,7 @@
                     <connections>
                         <outlet property="collectionView" destination="bnq-U2-TX9" id="FAN-RX-YBQ"/>
                         <outlet property="infoLabel" destination="LxD-xz-AFM" id="xBV-DC-1gD"/>
+                        <outlet property="pageControl" destination="Dxa-Yb-Z7N" id="vMv-cU-mc1"/>
                         <segue destination="58e-bJ-hro" kind="show" identifier="VWWSegueMainToSettings" id="HON-xK-hlG"/>
                         <segue destination="3bb-CL-cEl" kind="show" identifier="VWWSegueMainToSummary" id="s5b-h4-QqV"/>
                     </connections>

@@ -170,14 +170,9 @@
 		C6CEB78F19DB23B800B9FE20 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C6B9EC1C19DCAF9000ACE49A /* VWWAltitudeCollectionViewCell.h */,
-				C6B9EC1D19DCAF9000ACE49A /* VWWAltitudeCollectionViewCell.m */,
-				C6CEB76D19DB14FE00B9FE20 /* VWWViewController.h */,
-				C6CEB76E19DB14FE00B9FE20 /* VWWViewController.m */,
-				C6CEB78C19DB23A400B9FE20 /* VWWSettingsViewController.h */,
-				C6CEB78D19DB23A400B9FE20 /* VWWSettingsViewController.m */,
-				C6CEB79319DB332200B9FE20 /* VWWSummaryViewController.h */,
-				C6CEB79419DB332200B9FE20 /* VWWSummaryViewController.m */,
+				C6F0E6B719DF234A00815DDE /* Main */,
+				C6F0E6B819DF235700815DDE /* Settings */,
+				C6F0E6B919DF235C00815DDE /* Summary */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -189,6 +184,43 @@
 				C6CEB79719DB33D900B9FE20 /* VWWPlotView.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		C6F0E6B619DF234100815DDE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C6B9EC1C19DCAF9000ACE49A /* VWWAltitudeCollectionViewCell.h */,
+				C6B9EC1D19DCAF9000ACE49A /* VWWAltitudeCollectionViewCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		C6F0E6B719DF234A00815DDE /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C6F0E6B619DF234100815DDE /* Cell */,
+				C6CEB76D19DB14FE00B9FE20 /* VWWViewController.h */,
+				C6CEB76E19DB14FE00B9FE20 /* VWWViewController.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		C6F0E6B819DF235700815DDE /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C6CEB78C19DB23A400B9FE20 /* VWWSettingsViewController.h */,
+				C6CEB78D19DB23A400B9FE20 /* VWWSettingsViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		C6F0E6B919DF235C00815DDE /* Summary */ = {
+			isa = PBXGroup;
+			children = (
+				C6CEB79319DB332200B9FE20 /* VWWSummaryViewController.h */,
+				C6CEB79419DB332200B9FE20 /* VWWSummaryViewController.m */,
+			);
+			name = Summary;
 			sourceTree = "<group>";
 		};
 		CF4C02B719DB99ED00EA5671 /* MBProgressHUD */ = {

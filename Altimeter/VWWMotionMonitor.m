@@ -189,7 +189,7 @@
     [_session removeAllObjects];
     [self stop];
     [self start];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:VWWMotionMonitorUpdated object:nil];
 }
 
 -(NSString*)jsonRepresentation{
